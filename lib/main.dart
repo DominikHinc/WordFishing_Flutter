@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:WordFishing/theme/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,9 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: ApplicationThemes.getTheme(Themes.LIGHT),
       home: Scaffold(
         appBar: AppBar(
           title: Text("WordFishing!"),
