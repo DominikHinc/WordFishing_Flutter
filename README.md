@@ -1,6 +1,6 @@
 # WordFishing
 
-Complete recreation of a project under the same name. 
+Complete recreation of another project under the same name. 
 
 Previously written in LibGDX [Link](https://github.com/DominikHinc/WordFishing)
 
