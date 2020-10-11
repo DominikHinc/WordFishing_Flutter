@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var isSwitched = true;
 
+  // TODO remove placeholder code
   @override
   Widget build(BuildContext context) {
     return Center(

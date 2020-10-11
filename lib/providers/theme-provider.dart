@@ -25,7 +25,6 @@ class ApplicationThemeProvider extends ChangeNotifier {
   }
 
   void switchTheme(Themes themeType) {
-    print("Switching theme to:" + themeType.toString());
     _currentTheme = _getThemeData(themeType);
     notifyListeners();
   }
