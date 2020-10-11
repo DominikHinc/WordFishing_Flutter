@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'WordFishing!',
       theme: ApplicationThemes.getTheme(Themes.LIGHT),
       home: Scaffold(
         appBar: AppBar(
