@@ -4,7 +4,7 @@ Complete recreation of another project under the same name.
 
 Previously written in LibGDX [Link](https://github.com/DominikHinc/WordFishing)
 
-## Setting up the enveiroment
+## Setting up the environment
 
 Simply follow official documentation: https://flutter.dev/docs/get-started/install
 
