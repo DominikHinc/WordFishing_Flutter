@@ -19,21 +19,30 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text('HomeScreen'),
         ),
         body: Center(
-          child: Column(children: [
-            Text("Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
-            Consumer<ApplicationThemeProvider>(
-              builder: (_, theme, ___) => Switch(
-                onChanged: (value) {
-                  print(value);
-                  setState(() {
-                    isSwitched = value;
-                  });
-                  theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
-                },
-                value: isSwitched,
+          child: Column(
+            children: [
+              Text(
+                  "Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
+              Consumer<ApplicationThemeProvider>(
+                builder: (_, theme, ___) => Switch(
+                  onChanged: (value) {
+                    print(value);
+                    setState(() {
+                      isSwitched = value;
+                    });
+                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
+                  },
+                  value: isSwitched,
+                ),
               ),
-            ),
-          ]),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/second');
+                },
+                child: Text('cum?'),
+              )
+            ],
+          ),
         ),
       ),
     );
