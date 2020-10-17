@@ -14,21 +14,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(children: [
-        Text("Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
-        Consumer<ApplicationThemeProvider>(
-          builder: (_, theme, ___) => Switch(
-            onChanged: (value) {
-              print(value);
-              setState(() {
-                isSwitched = value;
-              });
-              theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
-            },
-            value: isSwitched,
-          ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('HomeScreen'),
         ),
-      ]),
+        body: Center(
+          child: Column(children: [
+            Text("Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
+            Consumer<ApplicationThemeProvider>(
+              builder: (_, theme, ___) => Switch(
+                onChanged: (value) {
+                  print(value);
+                  setState(() {
+                    isSwitched = value;
+                  });
+                  theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
+                },
+                value: isSwitched,
+              ),
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }
