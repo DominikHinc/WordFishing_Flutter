@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         builder: (_, theme, __) => MaterialApp(
           title: 'WordFishing',
           theme: theme.currentTheme,
-          initialRoute: '/',
+          initialRoute: INITIAL_ROUTE,
           routes: getRouteNames(),
         ),
       ),

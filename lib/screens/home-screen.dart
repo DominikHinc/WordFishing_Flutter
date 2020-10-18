@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Consumer<ApplicationThemeProvider>(
                 builder: (_, theme, ___) => Switch(
                   onChanged: (value) {
-                    print(value);
                     setState(() {
                       isSwitched = value;
                     });
@@ -35,12 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   value: isSwitched,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/second');
-                },
-                child: Text('cum?'),
-              )
             ],
           ),
         ),

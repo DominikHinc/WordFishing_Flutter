@@ -1,10 +1,10 @@
 import 'package:WordFishing/screens/home-screen.dart';
-import 'package:WordFishing/screens/placeholder.dart';
 import 'package:flutter/material.dart';
+
+const INITIAL_ROUTE = '/';
 
 Map<String, Widget Function(BuildContext)> getRouteNames() {
   return {
-    '/': (_) => HomeScreen(),
-    PlaceholderScreen.routeName: (_) => PlaceholderScreen(),
+    INITIAL_ROUTE: (_) => HomeScreen(),
   };
 }
