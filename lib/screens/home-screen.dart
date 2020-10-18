@@ -1,4 +1,5 @@
 import 'package:WordFishing/providers/theme-provider.dart';
+import 'package:WordFishing/widgets/main-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,11 +11,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var isSwitched = true;
 
-  // TODO remove placeholder code
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Scaffold(
+        drawer: MainDrawer(),
         appBar: AppBar(
           title: Text('HomeScreen'),
         ),
