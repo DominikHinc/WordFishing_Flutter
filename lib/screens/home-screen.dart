@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text('HomeScreen'),
         ),
         body: Center(
-<<<<<<< HEAD
           child: Column(
             children: [
               Text(
@@ -35,19 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   value: isSwitched,
                 ),
-=======
-          child: Column(children: [
-            Text("Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
-            Consumer<ApplicationThemeProvider>(
-              builder: (_, theme, ___) => Switch(
-                onChanged: (value) {
-                  setState(() {
-                    isSwitched = value;
-                  });
-                  theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
-                },
-                value: isSwitched,
->>>>>>> 8c3245d... add custom drawer
               ),
             ],
           ),
