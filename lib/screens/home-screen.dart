@@ -1,4 +1,5 @@
 import 'package:WordFishing/providers/theme-provider.dart';
+import 'package:WordFishing/services/app-localizations.dart';
 import 'package:WordFishing/widgets/main-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   value: isSwitched,
                 ),
+              ),
+              Text(
+                AppLocalizations.of(context).translate('example_message'),
               ),
             ],
           ),
