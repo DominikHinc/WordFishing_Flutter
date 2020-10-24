@@ -6,6 +6,7 @@ class GridViewBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GridView.count(
+        childAspectRatio: 1.2,
         primary: false,
         padding: const EdgeInsets.all(20),
         crossAxisSpacing: 10,

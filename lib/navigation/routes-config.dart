@@ -8,7 +8,6 @@ import 'package:WordFishing/screens/learning-screen.dart';
 import 'package:WordFishing/screens/settings-screen.dart';
 import 'package:WordFishing/screens/units-screen.dart';
 import 'package:flutter/material.dart';
-import 'package:WordFishing/screens/dummy-screen.dart';
 
 const INITIAL_ROUTE = './';
 
