@@ -1,3 +1,5 @@
 {
-    "example_message": "This is an example message written in english"
+    "example_message": "This is an example message written in english",
+    "chapters": "Chapters: ",
+    "class": "Class: "
 }

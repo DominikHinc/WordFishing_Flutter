@@ -1,3 +1,5 @@
 {
-    "example_message": "To jest przykładowa wiadomość napisana po polsku"
+    "example_message": "To jest przykładowa wiadomość napisana po polsku",
+    "chapters": "Rozdziały: ",
+    "class": "Klasa: "
 }
