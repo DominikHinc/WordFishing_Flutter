@@ -1,6 +1,6 @@
 import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
-import 'package:WordFishing/services/app-localizations.dart';
+import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/main-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Text(
-                AppLocalizations.of(context).translate('example_message'),
+                // NEW WAY OF TRANSLATING TEXT
+                translate(context, 'example_message'),
+                // THIS SHOULD BE THE DEFAULT WAY OF STYLING TEXT
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ],
           ),
