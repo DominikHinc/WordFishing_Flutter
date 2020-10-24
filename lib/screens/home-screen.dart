@@ -1,3 +1,4 @@
+import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/app-localizations.dart';
 import 'package:WordFishing/widgets/main-drawer.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = INITIAL_ROUTE;
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
