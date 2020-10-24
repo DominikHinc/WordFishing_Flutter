@@ -15,6 +15,7 @@ class MainDrawer extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'WordFishing',
+                    //TODO use HOW
                     style: TextStyle(fontSize: 30),
                   ),
                 ),
