@@ -1,8 +1,8 @@
 import 'package:WordFishing/utils/spacing.dart';
-import 'package:WordFishing/widgets/grid-tile-books.dart';
+import 'package:WordFishing/widgets/custom-grid-tile.dart';
 import 'package:flutter/material.dart';
 
-class GridViewBooks extends StatelessWidget {
+class CustomGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,7 +16,7 @@ class GridViewBooks extends StatelessWidget {
         mainAxisSpacing: spacing[3],
         crossAxisCount: 2,
         children: <Widget>[
-          GridTileBooks(),
+          CustomGridTile(),
         ],
       ),
     );

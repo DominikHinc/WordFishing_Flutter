@@ -4,7 +4,7 @@ import 'package:WordFishing/widgets/opacity-button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class GridTileBooks extends StatelessWidget {
+class CustomGridTile extends StatelessWidget {
   final String imageUrl;
   final String topDataText;
   final String bottomDataText;
@@ -12,7 +12,7 @@ class GridTileBooks extends StatelessWidget {
   final String topText;
   final String bottomText;
 
-  GridTileBooks({
+  CustomGridTile({
     this.imageUrl = ' ',
     this.topDataText = ' ',
     this.bottomDataText = ' ',
