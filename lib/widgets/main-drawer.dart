@@ -1,3 +1,4 @@
+import 'package:WordFishing/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -10,12 +11,10 @@ class MainDrawer extends StatelessWidget {
             Container(
               color: Theme.of(context).primaryColor,
               child: DrawerHeader(
-                //TODO use spacing util
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(spacing[3]),
                 child: Center(
                   child: Text(
                     'WordFishing',
-                    //TODO use HOW
                     style: TextStyle(fontSize: 30),
                   ),
                 ),

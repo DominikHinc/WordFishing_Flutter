@@ -18,6 +18,9 @@ ThemeData getLightTheme() {
       bodyText2: TextStyle(
         color: Palette.secondary,
       ),
+      subtitle2: TextStyle(
+        color: Palette.white,
+      ),
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

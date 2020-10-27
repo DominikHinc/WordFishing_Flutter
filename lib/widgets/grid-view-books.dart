@@ -1,3 +1,4 @@
+import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/widgets/grid-tile-books.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +9,11 @@ class GridViewBooks extends StatelessWidget {
       child: GridView.count(
         childAspectRatio: 1.2,
         primary: false,
-        padding: const EdgeInsets.all(20),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        padding: EdgeInsets.all(
+          spacing[4],
+        ),
+        crossAxisSpacing: spacing[3],
+        mainAxisSpacing: spacing[3],
         crossAxisCount: 2,
         children: <Widget>[
           GridTileBooks(),

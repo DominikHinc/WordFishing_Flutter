@@ -1,18 +1,24 @@
 import 'package:WordFishing/utils/spacing.dart';
+import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/opacity-button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:WordFishing/services/app-localizations.dart';
 
 class GridTileBooks extends StatelessWidget {
   final String imageUrl;
-  final String gridTileBarTextOne;
-  final String gridTileBarTextTwo;
+  final String topDataText;
+  final String bottomDataText;
+  final String title;
+  final String topText;
+  final String bottomText;
 
   GridTileBooks({
     this.imageUrl = ' ',
-    this.gridTileBarTextOne = ' ',
-    this.gridTileBarTextTwo = ' ',
+    this.topDataText = ' ',
+    this.bottomDataText = ' ',
+    this.title,
+    this.bottomText = ' ',
+    this.topText = ' ',
   });
   @override
   Widget build(BuildContext context) {
@@ -33,21 +39,25 @@ class GridTileBooks extends StatelessWidget {
           child: GridTile(
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: Theme.of(context).backgroundColor,
               ),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                fit: BoxFit.cover,
-                errorWidget: (context, url, error) => Center(
-                  child: Text(
-                    'Unable to load content',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
+              child: title.isEmpty || imageUrl.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => Center(
+                        child: Text(
+                          'Unable to load content',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: Text(title),
                     ),
-                  ),
-                ),
-              ),
             ),
             footer: Container(
               decoration: BoxDecoration(
@@ -63,48 +73,24 @@ class GridTileBooks extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          AppLocalizations.of(context).translate('class'),
-                          style: TextStyle(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .fontFamily,
-                          ),
+                          translate(context, topText),
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                         Text(
-                          gridTileBarTextOne,
-                          style: TextStyle(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .fontFamily,
-                          ),
+                          topDataText,
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ],
                     ),
                     Row(
                       children: <Widget>[
                         Text(
-                          AppLocalizations.of(context).translate('chapters'),
-                          style: TextStyle(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .fontFamily,
-                          ),
+                          translate(context, bottomText),
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                         Text(
-                          gridTileBarTextTwo,
-                          style: TextStyle(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            fontFamily: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .fontFamily,
-                          ),
+                          bottomDataText,
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ],
                     ),
