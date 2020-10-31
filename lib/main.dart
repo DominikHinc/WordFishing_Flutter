@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/app-localizations.dart';
@@ -16,10 +18,13 @@ void main() async {
   await Firebase.initializeApp();
 
   analytics = FirebaseAnalytics();
-
-  // In order to see the error on the fire base you should: throw FlutterError('Error Message');
-  // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  try {
+    if (Platform.isAndroid || Platform.isIOS) {
+      // In order to see the error on the fire base you should: throw FlutterError('Error Message');
+      FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    }
+  } catch (e) {}
 
   runApp(MyApp());
 }

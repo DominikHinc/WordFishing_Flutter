@@ -6,6 +6,7 @@ import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/main-drawer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +20,15 @@ class DebugScreen extends StatefulWidget {
 
 class _DebugScreenState extends State<DebugScreen> {
   var isSwitched = true;
+  var firebaseText = '';
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore.instance.collection('test').get().then((value) {
+      setState(() {
+        firebaseText = value.docs.first.data()['test'];
+      });
+    });
     return Center(
       child: Scaffold(
         drawer: MainDrawer(),
@@ -70,7 +77,8 @@ class _DebugScreenState extends State<DebugScreen> {
                   print("Event will be sent");
                   sendTestEvent();
                 },
-              )
+              ),
+              Text("Firebase Text: $firebaseText"),
             ],
           ),
         ),
