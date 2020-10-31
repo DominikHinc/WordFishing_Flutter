@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:WordFishing/navigation/routes-config.dart';
+import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/app-localizations.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: ApplicationThemeProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: DrawerTransformationProvider(),
         ),
       ],
       child: Consumer<ApplicationThemeProvider>(

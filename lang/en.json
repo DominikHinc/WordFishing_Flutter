@@ -1,5 +1,13 @@
 {
     "example_message": "This is an example message written in english",
     "chapters": "Chapters: ",
-    "class": "Class: "
+    "class": "Class: ",
+
+    "book_screen_label": "Books",
+    "auth_screen_label": "Log/Sign in",
+    "achievements_screen_label": "Achievements",
+    "settings_screen_label": "Settings",
+    "custom_list_screen_label": "Custom List",
+    "units_screen_label": "Units",
+    "credits_screen_label": "Credits"
 }

@@ -22,6 +22,7 @@ ThemeData getLightTheme() {
         color: Palette.white,
       ),
     ),
+    buttonColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -44,6 +45,7 @@ ThemeData getDarkTheme() {
         color: Palette.white,
       ),
     ),
+    buttonColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
