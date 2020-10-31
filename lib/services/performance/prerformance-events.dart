@@ -11,6 +11,7 @@ class PerformanceEvent {
 }
 
 // Example of how should custom performance event look like
+// TODO fix, coz not working
 PerformanceEvent measureVocabularyLoadTime() {
   Trace trace = FirebasePerformance.instance.newTrace('vocabulary_load');
   trace.start();

@@ -7,19 +7,12 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// TODO check if removing this line changes anything
-FirebaseAnalytics analytics;
-// TODO check if removing this line changes anything
-FirebasePerformance performance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // TODO check if removing this line changes anything
-  analytics = FirebaseAnalytics();
   try {
     if (Platform.isAndroid || Platform.isIOS) {
       // In order to see the error on the fire base you should: throw FlutterError('Error Message');

@@ -7,5 +7,4 @@ void sendFinishedLearningEvent() {
 
 void sendTestEvent() {
   FirebaseAnalytics().logEvent(name: "test_event");
-  FirebaseAnalytics().logAppOpen();
 }
