@@ -11,12 +11,14 @@ import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// TODO check if removing this line changes anything
 FirebaseAnalytics analytics;
+// TODO check if removing this line changes anything
 FirebasePerformance performance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  // TODO check if removing this line changes anything
   analytics = FirebaseAnalytics();
   try {
     if (Platform.isAndroid || Platform.isIOS) {
