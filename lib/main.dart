@@ -18,8 +18,8 @@ void main() async {
   analytics = FirebaseAnalytics();
 
   // In order to see the error on the fire base you should: throw FlutterError('Error Message');
-  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  // FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   runApp(MyApp());
 }

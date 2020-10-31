@@ -37,6 +37,7 @@ dependencies:
 
   # user auth
   firebase_auth: ^0.18.2
+  firebase_auth_web:
   google_sign_in: ^4.5.5
 
   # analytics
