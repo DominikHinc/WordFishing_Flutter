@@ -2,6 +2,7 @@ import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/main-drawer.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,29 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text('HomeScreen'),
         ),
         body: Center(
-          child: Column(
-            children: [
-              Text(
-                  "Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
-              Consumer<ApplicationThemeProvider>(
-                builder: (_, theme, ___) => Switch(
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
-                  },
-                  value: isSwitched,
-                ),
-              ),
-              Text(
-                // NEW WAY OF TRANSLATING TEXT
-                translate(context, 'example_message'),
-                // THIS SHOULD BE THE DEFAULT WAY OF STYLING TEXT
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-            ],
-          ),
+          child: Text("Home Screen!"),
         ),
       ),
     );
