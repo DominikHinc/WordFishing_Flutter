@@ -1,4 +1,4 @@
-import 'package:WordFishing/navigation/test-drawer-navigator.dart';
+import 'package:WordFishing/navigation/drawer-navigator.dart';
 import 'package:WordFishing/screens/achievements-screen.dart';
 import 'package:WordFishing/screens/auth-screen.dart';
 import 'package:WordFishing/screens/credits-screen.dart';

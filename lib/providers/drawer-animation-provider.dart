@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DrawerTransformationProvider extends ChangeNotifier {
-  bool _toggle = false;
+class DrawerAnimationProvider extends ChangeNotifier {
+  bool _toggle = true;
   double _xOffset = 0;
   double _yOffset = 0;
   double _scaleFactor = 1;

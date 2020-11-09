@@ -44,6 +44,9 @@ ThemeData getDarkTheme() {
       bodyText2: TextStyle(
         color: Palette.white,
       ),
+      subtitle2: TextStyle(
+        color: Palette.white,
+      ),
     ),
     buttonColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,

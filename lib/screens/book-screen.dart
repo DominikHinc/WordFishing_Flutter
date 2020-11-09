@@ -11,7 +11,7 @@ class BookScreen extends StatefulWidget {
 }
 
 class _BookScreenState extends State<BookScreen> {
-  var isSwitched = true;
+  var isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,9 @@ class _BookScreenState extends State<BookScreen> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(normalizeHeight(context, 55)),
-          child: CustomAppbar(),
+          child: CustomAppbar(
+            label: "book_screen_label",
+          ),
         ),
         body: Center(
           child: Column(
