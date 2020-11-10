@@ -15,7 +15,7 @@ class DrawerAnimator extends StatelessWidget {
           drawerAnimationProvider.xOffset, drawerAnimationProvider.yOffset, 0)
         ..scale(drawerAnimationProvider.scaleFactor),
       duration: Duration(milliseconds: 250),
-      child: drawerCurrentScreen.changeScreenToggle(),
+      child: drawerCurrentScreen.currentScreen,
     );
   }
 }

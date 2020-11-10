@@ -9,5 +9,6 @@
     "settings_screen_label": "Settings",
     "custom_list_screen_label": "Custom List",
     "units_screen_label": "Units",
-    "credits_screen_label": "Credits"
+    "credits_screen_label": "Credits",
+    "debug_screen_label": "Debug screen"
 }

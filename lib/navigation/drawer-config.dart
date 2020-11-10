@@ -2,6 +2,7 @@ import 'package:WordFishing/screens/achievements-screen.dart';
 import 'package:WordFishing/screens/auth-screen.dart';
 import 'package:WordFishing/screens/credits-screen.dart';
 import 'package:WordFishing/screens/custom-list-screen.dart';
+import 'package:WordFishing/screens/debug-screen.dart';
 import 'package:WordFishing/screens/settings-screen.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,13 @@ List<DrawerConfig> getDrawerButtonConfigs(BuildContext context) {
         'settings_screen_label',
       ),
       screen: SettingsScreen(),
+    ),
+    new DrawerConfig(
+      label: translate(
+        context,
+        'debug_screen_label',
+      ),
+      screen: DebugScreen(),
     ),
   ];
 }

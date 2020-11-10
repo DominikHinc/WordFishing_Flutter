@@ -9,5 +9,6 @@
     "settings_screen_label": "Ustawienia",
     "custom_list_screen_label": "Utwórz własną listę",
     "units_screen_label": "Rodziały",
-    "credits_screen_label": "Autorzy"
+    "credits_screen_label": "Autorzy",
+    "debug_screen_label": "Ekran debugowania"
 }

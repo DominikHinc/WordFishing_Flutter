@@ -1,3 +1,5 @@
+import 'package:WordFishing/utils/breakpoints.dart';
+import 'package:WordFishing/utils/normalize.dart';
 import 'package:flutter/material.dart';
 
 class DrawerAnimationProvider extends ChangeNotifier {
@@ -22,11 +24,20 @@ class DrawerAnimationProvider extends ChangeNotifier {
     return _toggle;
   }
 
-  void toggleTransform() {
-    _xOffset = _toggle ? 260 : 0;
-    _yOffset = _toggle ? 160 : 0;
-    _scaleFactor = _toggle ? 0.6 : 1;
-    _toggle = !_toggle;
+  void toggleTransform(BuildContext context) {
+    if (getAspectRatioBreakpoint(context) == AspectRatioBreakpoints.VERTICAL) {
+      _xOffset = _toggle ? normalizeWidth(context, 260) : 0;
+      _yOffset = _toggle ? normalizeHeight(context, 100) : 0;
+      _scaleFactor = _toggle ? 0.6 : 1;
+      _toggle = !_toggle;
+    }
+    if (getAspectRatioBreakpoint(context) ==
+        AspectRatioBreakpoints.HORIZONTAL) {
+      _xOffset = _toggle ? normalizeWidth(context, 100) : 0;
+      _yOffset = 0;
+      _scaleFactor = 1;
+      _toggle = !_toggle;
+    }
     notifyListeners();
   }
 }

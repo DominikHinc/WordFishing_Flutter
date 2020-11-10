@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           value: DrawerAnimationProvider(),
         ),
         ChangeNotifierProvider.value(
-          value: DrawerNavigationProvider(),
+          value: DrawerNavigationProvider(context),
         ),
       ],
       child: Consumer<ApplicationThemeProvider>(

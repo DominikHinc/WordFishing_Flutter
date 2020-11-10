@@ -1,3 +1,4 @@
+import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/translate.dart';
@@ -5,7 +6,12 @@ import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BookScreen extends StatefulWidget {
+class BookScreen extends StatefulWidget with DrawerScreenProperties {
+  static const routeName = './Books';
+  @override
+  final routeNameLocal = routeName;
+  @override
+  final drawerButtonTranslationKey = "book_screen_label";
   @override
   _BookScreenState createState() => _BookScreenState();
 }
@@ -34,7 +40,8 @@ class _BookScreenState extends State<BookScreen> {
                     setState(() {
                       isSwitched = value;
                     });
-                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
+                    theme.switchTheme(
+                        value ? Themes.DARK : Themes.LIGHT, context);
                   },
                   value: isSwitched,
                 ),

@@ -74,7 +74,6 @@ flutter:
   assets:
     - lang/en.json
     - lang/pl.json
-    - assets/testimage.png
     # - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

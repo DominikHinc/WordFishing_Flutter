@@ -1,25 +1,30 @@
 import 'dart:async';
 
-import 'package:WordFishing/navigation/routes-config.dart';
+import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
+import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/translate.dart';
-import 'package:WordFishing/widgets/main-drawer.dart';
+import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // THIS SCREEN IS USED FOR DEBUG PURPOUSES
-class DebugScreen extends StatefulWidget {
-  static const routeName = INITIAL_ROUTE;
+class DebugScreen extends StatefulWidget with DrawerScreenProperties {
+  static const routeName = "./DebugScreen";
+  @override
+  final routeNameLocal = routeName;
+  @override
+  final drawerButtonTranslationKey = "debug_screen_label";
   @override
   _DebugScreenState createState() => _DebugScreenState();
 }
 
 class _DebugScreenState extends State<DebugScreen> {
-  var isSwitched = true;
+  var isSwitched = false;
   var firebaseText = '';
 
   @override
@@ -31,9 +36,11 @@ class _DebugScreenState extends State<DebugScreen> {
     });
     return Center(
       child: Scaffold(
-        drawer: MainDrawer(),
-        appBar: AppBar(
-          title: Text('DEBUG SCREEN'),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(normalizeHeight(context, 55)),
+          child: CustomAppbar(
+            label: "debug_screen_label",
+          ),
         ),
         body: Center(
           child: Column(
@@ -46,7 +53,8 @@ class _DebugScreenState extends State<DebugScreen> {
                     setState(() {
                       isSwitched = value;
                     });
-                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
+                    theme.switchTheme(
+                        value ? Themes.DARK : Themes.LIGHT, context);
                   },
                   value: isSwitched,
                 ),
