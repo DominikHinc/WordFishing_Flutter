@@ -3,9 +3,10 @@ import 'package:WordFishing/navigation/drawer-routes-config.dart';
 import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/drawer-navigation-provider.dart';
 import 'package:WordFishing/utils/normalize.dart';
+import 'package:WordFishing/utils/scaling.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
-import 'package:WordFishing/utils/typography.dart';
+import 'package:WordFishing/widgets/drawer-button-animator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
         Provider.of<DrawerAnimationProvider>(context);
     final currentScreenProvider =
         Provider.of<DrawerNavigationProvider>(context);
+
+    final drawerButtonDecorationBoxBorder = Radius.circular(4.0);
+    final drawerButtonDecorationBoxHeight = normalizeHeight(context, 25);
+    final drawerButtonDecorationBoxWidth = normalizeWidth(context, 2.5);
 
     return GestureDetector(
       onTap: () {
@@ -46,50 +51,47 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           (currentScreenProvider.currentScreen
                                   as DrawerScreenProperties)
                               .routeNameLocal;
-                  return Container(
-                    margin: EdgeInsets.only(
-                        bottom: normalizePadding(context, spacing[5])),
-                    child: InkWell(
-                      onTap: () {
-                        currentScreenProvider.setScreenRouteName(
-                            context,
-                            (buttonConfigs[index] as DrawerScreenProperties)
-                                .routeNameLocal);
-                        drawerAnimationProvider.toggleTransform(context);
-                      },
-                      child: Row(
-                        children: <Widget>[
-                          ClipRRect(
+                  double scaleFactor = isSelected ? scaling[2] : scaling[1];
+                  return InkWell(
+                    onTap: () {
+                      currentScreenProvider.setScreenRouteName(
+                          context,
+                          (buttonConfigs[index] as DrawerScreenProperties)
+                              .routeNameLocal);
+                      drawerAnimationProvider.toggleTransform(context);
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        DrawerButtonAnimator(
+                          scaleFactor: scaleFactor,
+                          child: ClipRRect(
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(4.0),
-                              bottomRight: Radius.circular(4.0),
+                              topRight: drawerButtonDecorationBoxBorder,
+                              bottomRight: drawerButtonDecorationBoxBorder,
                             ),
                             child: Container(
-                              height: isSelected
-                                  ? normalizeHeight(context, 50.0)
-                                  : normalizeHeight(context, 30.0),
+                              height: drawerButtonDecorationBoxHeight,
+                              width: drawerButtonDecorationBoxWidth,
                               color: Theme.of(context).buttonColor,
-                              width: isSelected
-                                  ? normalizeWidth(context, 5.0)
-                                  : normalizeWidth(context, 3.0),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.only(
-                              left: normalizePadding(context, 10),
-                            ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                            left: normalizePadding(context, spacing[3]),
                           ),
-                          Text(
+                        ),
+                        DrawerButtonAnimator(
+                          scaleFactor: scaleFactor,
+                          child: Text(
                             translate(
                                 context,
                                 (buttonConfigs[index] as DrawerScreenProperties)
                                     .drawerButtonTranslationKey),
                             style: Theme.of(context).textTheme.subtitle2,
-                            textScaleFactor:
-                                isSelected ? typography[2] : typography[1],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },
