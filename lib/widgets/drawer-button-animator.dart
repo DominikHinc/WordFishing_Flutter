@@ -2,10 +2,10 @@ import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
-class DrawerButtonAnimator extends StatelessWidget {
+class DrawerAnimatedButton extends StatelessWidget {
   final double scaleFactor;
   final Widget child;
-  DrawerButtonAnimator({
+  DrawerAnimatedButton({
     @required this.scaleFactor,
     @required this.child,
   });

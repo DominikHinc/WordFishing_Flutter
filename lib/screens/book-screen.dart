@@ -36,8 +36,7 @@ class _BookScreenState extends State<BookScreen> {
                     setState(() {
                       isSwitched = value;
                     });
-                    theme.switchTheme(
-                        value ? Themes.DARK : Themes.LIGHT, context);
+                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
                   },
                   value: isSwitched,
                 ),

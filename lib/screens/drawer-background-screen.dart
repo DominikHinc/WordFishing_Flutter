@@ -56,7 +56,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
                     },
                     child: Row(
                       children: <Widget>[
-                        DrawerButtonAnimator(
+                        DrawerAnimatedButton(
                           scaleFactor: scaleFactor,
                           child: ClipRRect(
                             borderRadius: BorderRadius.only(
@@ -77,7 +77,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
                             left: normalizePadding(context, spacing[3]),
                           ),
                         ),
-                        DrawerButtonAnimator(
+                        DrawerAnimatedButton(
                           scaleFactor: scaleFactor,
                           child: Text(
                             translate(
@@ -85,7 +85,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
                                 (buttonConfigs[index] as DrawerScreenProperties)
                                     .drawerButtonTranslationKey),
                             style: Theme.of(context).textTheme.subtitle2,
-                            textScaleFactor: typography[2],
+                            textScaleFactor: fontScale[2],
                           ),
                         ),
                       ],

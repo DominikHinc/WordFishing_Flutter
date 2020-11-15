@@ -49,8 +49,7 @@ class _DebugScreenState extends State<DebugScreen> {
                     setState(() {
                       isSwitched = value;
                     });
-                    theme.switchTheme(
-                        value ? Themes.DARK : Themes.LIGHT, context);
+                    theme.switchTheme(value ? Themes.DARK : Themes.LIGHT);
                   },
                   value: isSwitched,
                 ),
