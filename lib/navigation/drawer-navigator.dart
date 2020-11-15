@@ -1,5 +1,5 @@
-import 'package:WordFishing/screens/drawer-screen.dart';
-import 'package:WordFishing/widgets/drawer-animator.dart';
+import 'package:WordFishing/screens/drawer-background-screen.dart';
+import 'package:WordFishing/screens/drawer-animated-screen.dart';
 import 'package:flutter/material.dart';
 
 class DrawerNavigator extends StatelessWidget {
@@ -8,8 +8,8 @@ class DrawerNavigator extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          DrawerScreen(),
-          DrawerAnimator(),
+          DrawerBackgroundScreen(),
+          DrawerAnimatedScreen(),
         ],
       ),
     );

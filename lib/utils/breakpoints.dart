@@ -9,3 +9,11 @@ getAspectRatioBreakpoint(BuildContext context) {
       ? AspectRatioBreakpoints.HORIZONTAL
       : AspectRatioBreakpoints.VERTICAL;
 }
+
+bool isScreenVertical(BuildContext context) {
+  return getAspectRatioBreakpoint(context) == AspectRatioBreakpoints.VERTICAL;
+}
+
+bool isScreenHorizontal(BuildContext context) {
+  return getAspectRatioBreakpoint(context) == AspectRatioBreakpoints.HORIZONTAL;
+}

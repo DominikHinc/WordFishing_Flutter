@@ -6,16 +6,12 @@ import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/scaling.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
+import 'package:WordFishing/utils/typography.dart';
 import 'package:WordFishing/widgets/drawer-button-animator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DrawerScreen extends StatefulWidget {
-  @override
-  _DrawerScreenState createState() => _DrawerScreenState();
-}
-
-class _DrawerScreenState extends State<DrawerScreen> {
+class DrawerBackgroundScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final buttonConfigs =
@@ -26,8 +22,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
         Provider.of<DrawerNavigationProvider>(context);
 
     final drawerButtonDecorationBoxBorder = Radius.circular(4.0);
-    final drawerButtonDecorationBoxHeight = normalizeHeight(context, 25);
-    final drawerButtonDecorationBoxWidth = normalizeWidth(context, 2.5);
 
     return GestureDetector(
       onTap: () {
@@ -45,13 +39,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
               child: ListView.builder(
                 itemCount: buttonConfigs.length,
                 itemBuilder: (context, index) {
-                  var isSelected =
+                  final isSelected =
                       (buttonConfigs[index] as DrawerScreenProperties)
                               .routeNameLocal ==
                           (currentScreenProvider.currentScreen
                                   as DrawerScreenProperties)
                               .routeNameLocal;
-                  double scaleFactor = isSelected ? scaling[2] : scaling[1];
+                  double scaleFactor = isSelected ? scaling[3] : scaling[0];
                   return InkWell(
                     onTap: () {
                       currentScreenProvider.setScreenRouteName(
@@ -70,9 +64,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                               bottomRight: drawerButtonDecorationBoxBorder,
                             ),
                             child: Container(
-                              height: drawerButtonDecorationBoxHeight,
-                              width: drawerButtonDecorationBoxWidth,
-                              color: Theme.of(context).buttonColor,
+                              height: normalizeHeight(context, 30),
+                              width: normalizeWidth(context, 3),
+                              color: isSelected
+                                  ? Theme.of(context).accentColor
+                                  : Theme.of(context).buttonColor,
                             ),
                           ),
                         ),
@@ -89,6 +85,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                 (buttonConfigs[index] as DrawerScreenProperties)
                                     .drawerButtonTranslationKey),
                             style: Theme.of(context).textTheme.subtitle2,
+                            textScaleFactor: typography[2],
                           ),
                         ),
                       ],

@@ -4,22 +4,25 @@ import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CustomAppbar extends StatefulWidget {
-  final String label;
-  CustomAppbar({@required this.label});
-
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
-  _CustomAppbarState createState() => _CustomAppbarState();
-}
+  final Size preferredSize;
 
-class _CustomAppbarState extends State<CustomAppbar> {
+  final String label;
+
+  CustomAppBar(
+    this.label, {
+    Key key,
+  })  : preferredSize = Size.fromHeight(50.0),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final drawerAnimationProvider =
         Provider.of<DrawerAnimationProvider>(context);
     if (getAspectRatioBreakpoint(context) == AspectRatioBreakpoints.VERTICAL) {
       return AppBar(
-        title: Text(translate(context, widget.label)),
+        title: Text(translate(context, label)),
         leading: Container(
           child: FlatButton(
             child: drawerAnimationProvider.toggle

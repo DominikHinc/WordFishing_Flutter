@@ -15,7 +15,8 @@ class DrawerButtonAnimator extends StatelessWidget {
     return AnimatedContainer(
       duration: drawerAnimationDuration,
       transform: Matrix4.translationValues(0, 0, 0)..scale(scaleFactor),
-      margin: EdgeInsets.only(bottom: normalizePadding(context, spacing[5])),
+      margin: EdgeInsets.only(
+          bottom: normalizePadding(context, spacing[5]) * scaleFactor),
       child: child,
     );
   }

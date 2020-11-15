@@ -4,7 +4,6 @@ import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
-import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,11 +35,8 @@ class _DebugScreenState extends State<DebugScreen> {
     });
     return Center(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(normalizeHeight(context, 55)),
-          child: CustomAppbar(
-            label: "debug_screen_label",
-          ),
+        appBar: CustomAppBar(
+          "debug_screen_label",
         ),
         body: Center(
           child: Column(

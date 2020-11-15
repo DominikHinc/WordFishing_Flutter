@@ -5,6 +5,6 @@ class Palette {
   static const secondary = Color(0xff313032);
   static const background = Color(0xffE1DEDE);
   static const backgroundSecondary = Color(0xffA0A0A0);
-  static const accents = Color(0xffCAA33A);
+  static const accents = Color(0xff5B5189);
   static const white = Color(0xffffffff);
 }

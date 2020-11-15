@@ -3,7 +3,7 @@ import 'package:WordFishing/providers/drawer-navigation-provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DrawerAnimator extends StatelessWidget {
+class DrawerAnimatedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final drawerAnimationProvider =

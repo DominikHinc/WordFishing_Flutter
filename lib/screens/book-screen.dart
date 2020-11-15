@@ -1,6 +1,5 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
-import 'package:WordFishing/utils/normalize.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +22,8 @@ class _BookScreenState extends State<BookScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(normalizeHeight(context, 55)),
-          child: CustomAppbar(
-            label: "book_screen_label",
-          ),
+        appBar: CustomAppBar(
+          "book_screen_label",
         ),
         body: Center(
           child: Column(
