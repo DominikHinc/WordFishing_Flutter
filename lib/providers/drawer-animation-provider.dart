@@ -31,7 +31,7 @@ class DrawerAnimationProvider extends ChangeNotifier {
       _scaleFactor = _toggle ? 0.6 : 1;
       _toggle = !_toggle;
     } else if (isScreenHorizontal(context)) {
-      _xOffset = _toggle ? normalizeWidth(context, 100) : 0;
+      _xOffset = _toggle ? normalizeWidth(context, 150) : 0;
       _yOffset = 0;
       _scaleFactor = 1;
       _toggle = !_toggle;
