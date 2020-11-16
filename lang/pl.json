@@ -1,3 +1,14 @@
 {
-    "example_message": "To jest przykładowa wiadomość napisana po polsku"
+    "example_message": "To jest przykładowa wiadomość napisana po polsku",
+    "chapters": "Rozdziały: ",
+    "class": "Klasa: ",
+    
+    "book_screen_label": "Książki",
+    "auth_screen_label": "Zaloguj/Zajerestruj się",
+    "achievements_screen_label": "Osiągnięcia",
+    "settings_screen_label": "Ustawienia",
+    "custom_list_screen_label": "Utwórz własną listę",
+    "units_screen_label": "Rodziały",
+    "credits_screen_label": "Autorzy",
+    "debug_screen_label": "Ekran debugowania"
 }

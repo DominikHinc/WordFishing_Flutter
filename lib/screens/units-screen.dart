@@ -1,4 +1,3 @@
-import 'package:WordFishing/widgets/main-drawer.dart';
 import 'package:flutter/material.dart';
 
 class UnitsScreen extends StatelessWidget {
@@ -6,10 +5,6 @@ class UnitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Choose unit"),
-      ),
-      drawer: MainDrawer(),
       body: Center(
         child: Text("Choose unit"),
       ),

@@ -6,6 +6,7 @@ ThemeData getLightTheme() {
     primaryColor: Palette.primary,
     accentColor: Palette.accents,
     scaffoldBackgroundColor: Palette.background,
+    shadowColor: Palette.secondary,
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
       headline6: TextStyle(
@@ -17,7 +18,11 @@ ThemeData getLightTheme() {
       bodyText2: TextStyle(
         color: Palette.secondary,
       ),
+      subtitle2: TextStyle(
+        color: Palette.white,
+      ),
     ),
+    buttonColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -27,6 +32,7 @@ ThemeData getDarkTheme() {
     primaryColor: Palette.secondary,
     accentColor: Palette.primary,
     scaffoldBackgroundColor: Palette.backgroundSecondary,
+    shadowColor: Palette.secondary,
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
       headline6: TextStyle(
@@ -38,7 +44,11 @@ ThemeData getDarkTheme() {
       bodyText2: TextStyle(
         color: Palette.white,
       ),
+      subtitle2: TextStyle(
+        color: Palette.white,
+      ),
     ),
+    buttonColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
