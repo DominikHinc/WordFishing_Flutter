@@ -10,5 +10,8 @@
     "custom_list_screen_label": "Utwórz własną listę",
     "units_screen_label": "Rodziały",
     "credits_screen_label": "Autorzy",
-    "debug_screen_label": "Ekran debugowania"
+    "debug_screen_label": "Ekran debugowania",
+    
+    "dark_theme_name": "Ciemny",
+    "light_theme_name": "Jasny"
 }
