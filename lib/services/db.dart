@@ -1,6 +1,7 @@
 import 'package:WordFishing/models/book.dart';
 import 'package:WordFishing/models/unit.dart';
 import 'package:WordFishing/models/vocabulary.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 Future<List<Book>> loadBooksFromDatabase(
@@ -11,10 +12,9 @@ Future<List<Book>> loadBooksFromDatabase(
   try {
     booksData = (await databaseReference.child('books').once()).value;
     vocabularyData = (await databaseReference.child("vocabulary").once()).value;
-  } catch (error) {
-    //TODO report error to firebase
-    print("ERROR WHILE LOADING BOOKS FROM DATABASE");
-    print(error);
+  } catch (e, s) {
+    await FirebaseCrashlytics.instance
+        .recordError(e, s, reason: 'ERROR WHILE LOADING BOOKS FROM DATABASE');
     return books;
   }
 

@@ -1,11 +1,10 @@
-import 'dart:convert';
-
 import 'package:WordFishing/models/book.dart';
 import 'package:WordFishing/models/unit.dart';
 import 'package:WordFishing/models/vocabulary.dart';
 import 'package:WordFishing/services/db.dart';
 import 'package:WordFishing/utils/vocabulary-serialization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -27,27 +26,35 @@ class BooksProvider extends ChangeNotifier {
     try {
       final isReady = await storage.ready;
       if (!isReady) throw Error();
-    } catch (e) {
-      //TODO report error to firebase
-      print("LOCAL STORAGE CANNOT BE INITIALIZED");
+    } catch (e, s) {
+      // TODO check whether these reports are working
+      await FirebaseCrashlytics.instance
+          .recordError(e, s, reason: 'LOCAL STORAGE CANNOT BE INITIALIZED');
       return;
     }
 
     final databaseReference = FirebaseDatabase(app: Firebase.app()).reference();
-    final databaseLastUpdate =
-        (await databaseReference.child('last_update').once()).value;
     final localLastUpdate = storage.getItem(lastUpdateStorageKey);
+    var databaseLastUpdate = localLastUpdate;
+    try {
+      databaseLastUpdate =
+          (await databaseReference.child('last_update').once()).value;
+    } catch (e, s) {
+      await FirebaseCrashlytics.instance
+          .recordError(e, s, reason: 'CANNOT GET LAST UPTADE FROM DATABASE');
+    }
 
     if (localLastUpdate == databaseLastUpdate) {
-      _books =
-          decodeSerializedBooks(storage.getItem(localVocabularyStorageKey));
+      final localVocabulary = storage.getItem(localVocabularyStorageKey);
+      if (localVocabulary != null)
+        _books = decodeSerializedBooks(localVocabulary);
       _dataLoadedCorrectly();
     } else {
       try {
         _books = await loadBooksFromDatabase(databaseReference);
-      } catch (e) {
-        //TODO report error to firebase
-        print("ERROR WHILE LOADING BOOKS FROM DATABASE");
+      } catch (e, s) {
+        await FirebaseCrashlytics.instance.recordError(e, s,
+            reason: 'ERROR WHILE LOADING BOOKS FROM DATABASE');
         return;
       }
       storage.setItem(lastUpdateStorageKey, databaseLastUpdate);
@@ -61,13 +68,28 @@ class BooksProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO add getters for book by id, vocabulary by book id ect...
-
   List<Book> get books {
     return _books;
   }
 
   bool get dataLoaded {
     return _dataLoaded;
+  }
+
+  Book getBookById(String bookId) {
+    return _books.firstWhere((bookElem) => bookElem.id == bookId);
+  }
+
+  List<Unit> getBookUnits(String bookId) {
+    return getBookById(bookId).units;
+  }
+
+  Unit getBookUnit(String bookId, String unitNumber) {
+    return getBookUnits(bookId)
+        .firstWhere((unitElem) => unitElem.unitNumber == unitNumber);
+  }
+
+  List<Vocabulary> getUnitVocabulary(String bookId, String unitNumber) {
+    return getBookUnit(bookId, unitNumber).vocabulary;
   }
 }
