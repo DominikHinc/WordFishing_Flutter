@@ -8,6 +8,7 @@ import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/utils/typography.dart';
 import 'package:WordFishing/widgets/drawer-button-animator.dart';
+import 'package:WordFishing/widgets/theme-switch.dart';
 import 'package:flutter/material.dart';
 import 'package:WordFishing/widgets/cross-platform-svg.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
           top: normalizePadding(context, spacing[5]),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: EdgeInsets.only(
@@ -127,6 +129,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
                 },
               ),
             ),
+            ThemeSwitch(),
           ],
         ),
       ),
