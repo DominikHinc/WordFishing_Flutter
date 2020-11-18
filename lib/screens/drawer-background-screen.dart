@@ -44,7 +44,7 @@ class DrawerBackgroundScreen extends StatelessWidget {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: CrossPlatformSvg.asset(
-                      color: Colors.white,
+                      color: Theme.of(context).canvasColor,
                     ),
                   ),
                   Column(
