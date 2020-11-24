@@ -23,6 +23,8 @@ ThemeData getLightTheme() {
       ),
     ),
     buttonColor: Palette.white,
+    //THIS IS ONLY USED FOR THE LOGO
+    canvasColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -49,6 +51,8 @@ ThemeData getDarkTheme() {
       ),
     ),
     buttonColor: Palette.white,
+    //THIS IS ONLY USED FOR THE LOGO
+    canvasColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

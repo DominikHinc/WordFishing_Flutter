@@ -9,6 +9,7 @@ import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/utils/typography.dart';
 import 'package:WordFishing/widgets/drawer-button-animator.dart';
 import 'package:flutter/material.dart';
+import 'package:WordFishing/widgets/cross-platform-svg.dart';
 import 'package:provider/provider.dart';
 
 class DrawerBackgroundScreen extends StatelessWidget {
@@ -30,11 +31,43 @@ class DrawerBackgroundScreen extends StatelessWidget {
       child: Container(
         color: Theme.of(context).primaryColor,
         padding: EdgeInsets.only(
-          top: normalizePadding(context, spacing[6]),
+          top: normalizePadding(context, spacing[5]),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              padding: EdgeInsets.only(
+                  bottom: normalizePadding(context, spacing[4])),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: CrossPlatformSvg.asset(
+                      color: Theme.of(context).canvasColor,
+                    ),
+                  ),
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Word',
+                        style: TextStyle(
+                            color: Theme.of(context).textTheme.subtitle2.color,
+                            fontSize: fontSize[6]),
+                      ),
+                      Text(
+                        'Fishing',
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            // fontWeight: FontWeight.w700,
+                            fontSize: fontSize[6]),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: buttonConfigs.length,
@@ -64,8 +97,8 @@ class DrawerBackgroundScreen extends StatelessWidget {
                               bottomRight: drawerButtonDecorationBoxBorder,
                             ),
                             child: Container(
-                              height: normalizeHeight(context, 30),
-                              width: normalizeWidth(context, 3),
+                              height: 30,
+                              width: 3,
                               color: isSelected
                                   ? Theme.of(context).accentColor
                                   : Theme.of(context).buttonColor,
