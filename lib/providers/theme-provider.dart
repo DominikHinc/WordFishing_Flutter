@@ -5,6 +5,7 @@ enum Themes { LIGHT, DARK }
 
 class ApplicationThemeProvider extends ChangeNotifier {
   ThemeData _currentTheme;
+  Themes _currentThemeType;
 
   ApplicationThemeProvider({Themes themeType}) {
     switchTheme(themeType);
@@ -26,7 +27,12 @@ class ApplicationThemeProvider extends ChangeNotifier {
 
   void switchTheme(Themes themeType) {
     _currentTheme = _getThemeData(themeType);
+    _currentThemeType = themeType;
     notifyListeners();
+  }
+
+  Themes get currentThemeType {
+    return _currentThemeType;
   }
 
   ThemeData get currentTheme {
