@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:WordFishing/navigation/routes-config.dart';
+import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/drawer-navigation-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
@@ -19,7 +20,13 @@ void main() async {
     if (Platform.isAndroid || Platform.isIOS) {
       // In order to see the error on the fire base you should: throw FlutterError('Error Message');
       FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+      // Pass all uncaught errors to Crashlytics.
+      Function originalOnError = FlutterError.onError;
+      FlutterError.onError = (FlutterErrorDetails errorDetails) async {
+        await FirebaseCrashlytics.instance.recordFlutterError(errorDetails);
+        // Forward to original handler.
+        originalOnError(errorDetails);
+      };
     }
   } catch (e) {}
 
@@ -39,6 +46,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: DrawerNavigationProvider(context),
+        ),
+        ChangeNotifierProvider.value(
+          value: BooksProvider(),
         ),
       ],
       child: Consumer<ApplicationThemeProvider>(
