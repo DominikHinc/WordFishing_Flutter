@@ -7,8 +7,6 @@ import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
-import 'package:WordFishing/widgets/main-drawer.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
