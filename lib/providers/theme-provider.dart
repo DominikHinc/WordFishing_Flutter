@@ -20,7 +20,7 @@ class ApplicationThemeProvider extends ChangeNotifier {
         return getDarkTheme();
         break;
       default:
-        return getLightTheme();
+        return getDarkTheme();
         break;
     }
   }

@@ -6,6 +6,7 @@ ThemeData getLightTheme() {
     primaryColor: Palette.primary,
     accentColor: Palette.accents,
     scaffoldBackgroundColor: Palette.background,
+    backgroundColor: Palette.background,
     shadowColor: Palette.secondary,
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
@@ -23,6 +24,8 @@ ThemeData getLightTheme() {
       ),
     ),
     buttonColor: Palette.white,
+    cardColor: Palette.neutral,
+    hintColor: Palette.secondary,
     //THIS IS ONLY USED FOR THE LOGO
     canvasColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -34,6 +37,7 @@ ThemeData getDarkTheme() {
     primaryColor: Palette.secondary,
     accentColor: Palette.primary,
     scaffoldBackgroundColor: Palette.backgroundSecondary,
+    backgroundColor: Palette.backgroundSecondary,
     shadowColor: Palette.secondary,
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
@@ -51,6 +55,8 @@ ThemeData getDarkTheme() {
       ),
     ),
     buttonColor: Palette.white,
+    cardColor: Palette.secondary,
+    hintColor: Palette.neutral,
     //THIS IS ONLY USED FOR THE LOGO
     canvasColor: Palette.white,
     visualDensity: VisualDensity.adaptivePlatformDensity,

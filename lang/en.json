@@ -14,5 +14,7 @@
     "debug_screen_label": "Debug screen",
     
     "dark_theme_name": "Dark",
-    "light_theme_name": "Light"
+    "light_theme_name": "Light",
+
+    "text_input_placeholder": "Answer"
 }
