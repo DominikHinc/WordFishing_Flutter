@@ -10,10 +10,10 @@ class UnitsScreen extends StatelessWidget {
   static const routeName = './Units';
   @override
   Widget build(BuildContext context) {
-    var booksProvider = Provider.of<BooksProvider>(context);
+    final booksProvider = Provider.of<BooksProvider>(context);
     final UnitsScreenArguments unitsScreenArguments =
         ModalRoute.of(context).settings.arguments;
-    var translated = translate(context, "unit");
+    final translated = translate(context, "unit");
     return Center(
       child: Scaffold(
           appBar: AppBar(
