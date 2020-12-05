@@ -2,20 +2,22 @@ import 'package:WordFishing/utils/normalize.dart';
 import 'package:flutter/material.dart';
 
 class ProgressBar extends StatelessWidget {
+  static const double PROGRESS_BAR_HEIGHT = 30;
   final double maxAmount;
   final double currentProgress;
   ProgressBar({
-    this.maxAmount,
-    this.currentProgress,
+    @required this.maxAmount,
+    @required this.currentProgress,
   });
+  //This value is later normalized in the widget
+
   @override
   Widget build(BuildContext context) {
-    final normalizedHeight = normalizeHeight(context, 30);
-
+    final normalizedHeight = normalizeHeight(context, PROGRESS_BAR_HEIGHT);
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(normalizedHeight / 2),
           child: Container(
             height: normalizedHeight,
             child: LinearProgressIndicator(
