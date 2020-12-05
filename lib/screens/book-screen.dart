@@ -17,8 +17,8 @@ class BookScreen extends StatelessWidget with DrawerScreenProperties {
   final drawerButtonTranslationKey = "book_screen_label";
   @override
   Widget build(BuildContext context) {
-    var booksProvider = Provider.of<BooksProvider>(context);
-    var books = booksProvider.books;
+    final booksProvider = Provider.of<BooksProvider>(context);
+    final books = booksProvider.books;
     String translated = translate(context, "number_of_units");
     return Center(
       child: Scaffold(
