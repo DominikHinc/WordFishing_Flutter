@@ -32,6 +32,7 @@ class _DebugScreenState extends State<DebugScreen> {
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
+    final textController = TextEditingController();
     return Center(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -119,7 +120,13 @@ class _DebugScreenState extends State<DebugScreen> {
                     ),
                   ),
                 ),
-                StickyTextInput()
+                StickyTextInput(
+                  textEditingController: textController,
+                  onSubmit: () {
+                    print(textController.text);
+                    textController.clear();
+                  },
+                )
               ],
             ),
           ),
