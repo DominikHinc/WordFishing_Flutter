@@ -13,12 +13,12 @@ class ThemeSwitch extends StatelessWidget {
       children: [
         Switch(
           onChanged: (value) {
-            appThemeProvider.switchTheme(value ? Themes.DARK : Themes.LIGHT);
+            appThemeProvider.switchTheme(value ? Themes.LIGHT : Themes.DARK);
           },
-          value: appThemeProvider.currentThemeType == Themes.DARK,
+          value: appThemeProvider.currentThemeType == Themes.LIGHT,
         ),
         Text(
-          'Mode: ${appThemeProvider.currentThemeType == Themes.DARK ? darkThemeTranslate : lightThemeTranslate}',
+          'Mode: ${appThemeProvider.currentThemeType == Themes.LIGHT ? lightThemeTranslate : darkThemeTranslate}',
           style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
         )
       ],
