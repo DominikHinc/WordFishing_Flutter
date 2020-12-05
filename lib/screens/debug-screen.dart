@@ -7,6 +7,7 @@ import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
+import 'package:WordFishing/widgets/empty-screen.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -106,6 +107,8 @@ class _DebugScreenState extends State<DebugScreen> {
                       ],
                     );
                   }).toList()
+                else
+                  EmptyScreen(),
               ],
             ),
           ),

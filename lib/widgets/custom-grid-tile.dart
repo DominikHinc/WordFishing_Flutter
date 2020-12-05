@@ -11,14 +11,16 @@ class CustomGridTile extends StatelessWidget {
   final String title;
   final String topText;
   final String bottomText;
+  final Function onPressed;
 
   CustomGridTile({
-    this.imageUrl = ' ',
+    this.imageUrl = "",
     this.topDataText = ' ',
     this.bottomDataText = ' ',
     this.title,
     this.bottomText = ' ',
     this.topText = ' ',
+    this.onPressed,
   });
   @override
   Widget build(BuildContext context) {
@@ -34,17 +36,18 @@ class CustomGridTile extends StatelessWidget {
         ],
       ),
       child: OpacityButton(
+        onPressed: onPressed,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: GridTile(
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).primaryColor,
               ),
-              child: title.isEmpty || imageUrl.isNotEmpty
+              child: imageUrl.isNotEmpty
                   ? CachedNetworkImage(
                       imageUrl: imageUrl,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fitHeight,
                       errorWidget: (context, url, error) => Center(
                         child: Text(
                           'Unable to load content',
@@ -56,7 +59,9 @@ class CustomGridTile extends StatelessWidget {
                       ),
                     )
                   : Center(
-                      child: Text(title),
+                      child: Text(title,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headline6),
                     ),
             ),
             footer: Container(
@@ -72,9 +77,12 @@ class CustomGridTile extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text(
-                          translate(context, topText),
-                          style: Theme.of(context).textTheme.subtitle2,
+                        Expanded(
+                          child: Text(
+                            topText,
+                            style: Theme.of(context).textTheme.subtitle2,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         Text(
                           topDataText,
@@ -82,10 +90,14 @@ class CustomGridTile extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: spacing[1],
+                    ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          translate(context, bottomText),
+                          bottomText,
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
                         Text(

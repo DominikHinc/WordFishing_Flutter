@@ -1,7 +1,8 @@
 {
     "example_message": "To jest przykładowa wiadomość napisana po polsku",
-    "chapters": "Rozdziały: ",
+    "unit": "Rozdział: ",
     "class": "Klasa: ",
+    "number_of_units": "Liczba Rozdziałów",
     
     "book_screen_label": "Książki",
     "auth_screen_label": "Zaloguj/Zajerestruj się",

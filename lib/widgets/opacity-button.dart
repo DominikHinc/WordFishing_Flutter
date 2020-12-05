@@ -6,13 +6,14 @@ class OpacityButton extends StatefulWidget {
   final double changedOpacity;
   final double baseTransform;
   final double changedTransform;
-  OpacityButton({
-    @required this.child,
-    this.baseOpacity = 1.0,
-    this.changedOpacity = 0.6,
-    this.baseTransform = 1.0,
-    this.changedTransform = 0.95,
-  });
+  final Function onPressed;
+  OpacityButton(
+      {@required this.child,
+      this.baseOpacity = 1.0,
+      this.changedOpacity = 0.6,
+      this.baseTransform = 1.0,
+      this.changedTransform = 0.95,
+      this.onPressed});
   @override
   _OpacityButtonState createState() => _OpacityButtonState();
 }
@@ -32,10 +33,18 @@ class _OpacityButtonState extends State<OpacityButton> {
             setState(() {
               _pressed = !_pressed;
             });
+            widget.onPressed();
           },
           onTapUp: (details) {
             setState(() {
               _pressed = !_pressed;
+            });
+          },
+          onTapCancel: () {
+            Future.delayed(const Duration(milliseconds: 100), () {
+              setState(() {
+                _pressed = !_pressed;
+              });
             });
           },
           child: this.widget.child,
