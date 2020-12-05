@@ -3,6 +3,7 @@ import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/opacity-button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class CustomGridTile extends StatelessWidget {
   final String imageUrl;
@@ -14,12 +15,12 @@ class CustomGridTile extends StatelessWidget {
   final Function onPressed;
 
   CustomGridTile({
-    this.imageUrl = "",
-    this.topDataText = ' ',
-    this.bottomDataText = ' ',
+    this.imageUrl = '',
+    this.topDataText = '',
+    this.bottomDataText = '',
     this.title,
-    this.bottomText = ' ',
-    this.topText = ' ',
+    this.bottomText = '',
+    this.topText = '',
     this.onPressed,
   });
   @override
@@ -59,9 +60,14 @@ class CustomGridTile extends StatelessWidget {
                       ),
                     )
                   : Center(
-                      child: Text(title,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline6),
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: spacing[3]),
+                        child: Text(title,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: Theme.of(context).textTheme.headline6),
+                      ),
                     ),
             ),
             footer: Container(
@@ -75,30 +81,37 @@ class CustomGridTile extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            topText,
-                            style: Theme.of(context).textTheme.subtitle2,
-                            textAlign: TextAlign.center,
+                    if (topText.length > 0)
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              topText,
+                              style: Theme.of(context).textTheme.subtitle2,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                        ),
-                        Text(
-                          topDataText,
-                          style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                      ],
-                    ),
+                          Text(
+                            topDataText,
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
+                        ],
+                      ),
                     SizedBox(
                       height: spacing[1],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          bottomText,
-                          style: Theme.of(context).textTheme.subtitle2,
+                        Expanded(
+                          child: Text(
+                            bottomText,
+                            maxLines: 2,
+                            style: Theme.of(context).textTheme.subtitle2,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         Text(
                           bottomDataText,
