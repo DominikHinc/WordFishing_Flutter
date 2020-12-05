@@ -5,9 +5,11 @@ import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
+import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:WordFishing/widgets/empty-screen.dart';
+import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:WordFishing/widgets/sticky-text-input.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,7 @@ class DebugScreen extends StatefulWidget with DrawerScreenProperties {
 class _DebugScreenState extends State<DebugScreen> {
   var isSwitched = false;
   var firebaseText = '';
+  double currentProgress = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,12 @@ class _DebugScreenState extends State<DebugScreen> {
     final textController = TextEditingController();
     return Center(
       child: Scaffold(
-        appBar: CustomAppBar(
-          "debug_screen_label",
+        appBar: AppBar(
+          title: ProgressBar(
+            maxAmount: 30,
+            currentProgress: currentProgress,
+          ),
+          leading: Icon(Icons.arrow_back),
         ),
         body: SafeArea(
           child: LayoutBuilder(
@@ -49,6 +56,28 @@ class _DebugScreenState extends State<DebugScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        FloatingActionButton(
+                          child: Text("+1"),
+                          onPressed: () {
+                            setState(() {
+                              currentProgress += 1;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: spacing[2],
+                        ),
+                        FloatingActionButton(
+                          child: Text("res"),
+                          onPressed: () {
+                            setState(() {
+                              currentProgress = 0.0;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: spacing[2],
+                        ),
                         Text(
                             "Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
                         Consumer<ApplicationThemeProvider>(
@@ -126,7 +155,7 @@ class _DebugScreenState extends State<DebugScreen> {
                     print(textController.text);
                     textController.clear();
                   },
-                )
+                ),
               ],
             ),
           ),
