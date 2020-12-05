@@ -14,5 +14,7 @@
     "debug_screen_label": "Ekran debugowania",
     
     "dark_theme_name": "Ciemny",
-    "light_theme_name": "Jasny"
+    "light_theme_name": "Jasny",
+
+    "text_input_placeholder": "Odpowiedź"
 }

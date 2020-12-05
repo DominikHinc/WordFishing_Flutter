@@ -34,103 +34,107 @@ class DrawerBackgroundScreen extends StatelessWidget {
         padding: EdgeInsets.only(
           top: normalizePadding(context, spacing[5]),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                  bottom: normalizePadding(context, spacing[4])),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: CrossPlatformSvg.asset(
-                      color: Theme.of(context).canvasColor,
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                    bottom: normalizePadding(context, spacing[4])),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: CrossPlatformSvg.asset(
+                        color: Theme.of(context).canvasColor,
+                      ),
                     ),
-                  ),
-                  Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Word',
-                        style: TextStyle(
-                            color: Theme.of(context).textTheme.subtitle2.color,
-                            fontSize: fontSize[6]),
-                      ),
-                      Text(
-                        'Fishing',
-                        style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                            // fontWeight: FontWeight.w700,
-                            fontSize: fontSize[6]),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: buttonConfigs.length,
-                itemBuilder: (context, index) {
-                  final isSelected =
-                      (buttonConfigs[index] as DrawerScreenProperties)
-                              .routeNameLocal ==
-                          (currentScreenProvider.currentScreen
-                                  as DrawerScreenProperties)
-                              .routeNameLocal;
-                  double scaleFactor = isSelected ? scaling[3] : scaling[0];
-                  return InkWell(
-                    onTap: () {
-                      currentScreenProvider.setScreenRouteName(
-                          context,
-                          (buttonConfigs[index] as DrawerScreenProperties)
-                              .routeNameLocal);
-                      drawerAnimationProvider.toggleTransform(context);
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        DrawerAnimatedButton(
-                          scaleFactor: scaleFactor,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              topRight: drawerButtonDecorationBoxBorder,
-                              bottomRight: drawerButtonDecorationBoxBorder,
-                            ),
-                            child: Container(
-                              height: 30,
-                              width: 3,
-                              color: isSelected
-                                  ? Theme.of(context).accentColor
-                                  : Theme.of(context).buttonColor,
-                            ),
-                          ),
+                    Column(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Word',
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.subtitle2.color,
+                              fontSize: fontSize[6]),
                         ),
-                        Container(
-                          padding: EdgeInsets.only(
-                            left: normalizePadding(context, spacing[3]),
-                          ),
-                        ),
-                        DrawerAnimatedButton(
-                          scaleFactor: scaleFactor,
-                          child: Text(
-                            translate(
-                                context,
-                                (buttonConfigs[index] as DrawerScreenProperties)
-                                    .drawerButtonTranslationKey),
-                            style: Theme.of(context).textTheme.subtitle2,
-                            textScaleFactor: fontScale[2],
-                          ),
+                        Text(
+                          'Fishing',
+                          style: TextStyle(
+                              color: Theme.of(context).accentColor,
+                              // fontWeight: FontWeight.w700,
+                              fontSize: fontSize[6]),
                         ),
                       ],
                     ),
-                  );
-                },
+                  ],
+                ),
               ),
-            ),
-            ThemeSwitch(),
-          ],
+              Expanded(
+                child: ListView.builder(
+                  itemCount: buttonConfigs.length,
+                  itemBuilder: (context, index) {
+                    final isSelected =
+                        (buttonConfigs[index] as DrawerScreenProperties)
+                                .routeNameLocal ==
+                            (currentScreenProvider.currentScreen
+                                    as DrawerScreenProperties)
+                                .routeNameLocal;
+                    double scaleFactor = isSelected ? scaling[3] : scaling[0];
+                    return InkWell(
+                      onTap: () {
+                        currentScreenProvider.setScreenRouteName(
+                            context,
+                            (buttonConfigs[index] as DrawerScreenProperties)
+                                .routeNameLocal);
+                        drawerAnimationProvider.toggleTransform(context);
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          DrawerAnimatedButton(
+                            scaleFactor: scaleFactor,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topRight: drawerButtonDecorationBoxBorder,
+                                bottomRight: drawerButtonDecorationBoxBorder,
+                              ),
+                              child: Container(
+                                height: 30,
+                                width: 3,
+                                color: isSelected
+                                    ? Theme.of(context).accentColor
+                                    : Theme.of(context).buttonColor,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                              left: normalizePadding(context, spacing[3]),
+                            ),
+                          ),
+                          DrawerAnimatedButton(
+                            scaleFactor: scaleFactor,
+                            child: Text(
+                              translate(
+                                  context,
+                                  (buttonConfigs[index]
+                                          as DrawerScreenProperties)
+                                      .drawerButtonTranslationKey),
+                              style: Theme.of(context).textTheme.subtitle2,
+                              textScaleFactor: fontScale[2],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              ThemeSwitch(),
+            ],
+          ),
         ),
       ),
     );
