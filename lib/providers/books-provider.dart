@@ -81,6 +81,8 @@ class BooksProvider extends ChangeNotifier {
   }
 
   List<Unit> getBookUnits(String bookId) {
+    getBookById(bookId).units.sort((a, b) =>
+        int.tryParse(a.unitNumber).compareTo(int.parse(b.unitNumber)));
     return getBookById(bookId).units;
   }
 

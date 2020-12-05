@@ -1,7 +1,8 @@
 {
     "example_message": "This is an example message written in english",
-    "chapters": "Chapters: ",
+    "unit": "Unit: ",
     "class": "Class: ",
+    "number_of_units": "Number of Units",
 
     "book_screen_label": "Books",
     "auth_screen_label": "Log/Sign in",

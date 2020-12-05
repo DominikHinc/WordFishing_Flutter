@@ -10,7 +10,7 @@ ThemeData getLightTheme() {
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
       headline6: TextStyle(
-        color: Palette.secondary,
+        color: Palette.white,
       ),
       bodyText1: TextStyle(
         color: Palette.secondary,
