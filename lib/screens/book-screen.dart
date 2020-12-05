@@ -1,6 +1,7 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/models/units_screen_arguments.dart';
 import 'package:WordFishing/providers/books-provider.dart';
+import 'package:WordFishing/screens/units-screen.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:WordFishing/widgets/custom-grid-tile.dart';
@@ -20,19 +21,17 @@ class BookScreen extends StatelessWidget with DrawerScreenProperties {
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
     String translated = translate(context, "number_of_units");
-    return Center(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          "book_screen_label",
-        ),
-        body: CustomGridView(
-          childAspectRatio: 0.7,
-          children: [
-            if (booksProvider.dataLoaded)
-              ...books.map((book) {
+    return Scaffold(
+      appBar: CustomAppBar(
+        "book_screen_label",
+      ),
+      body: booksProvider.dataLoaded
+          ? CustomGridView(
+              childAspectRatio: 0.7,
+              children: books.map((book) {
                 return CustomGridTile(
                   onPressed: () {
-                    Navigator.pushNamed(context, "./Units",
+                    Navigator.pushNamed(context, UnitsScreen.routeName,
                         arguments: UnitsScreenArguments(book.id));
                   },
                   imageUrl: book.imgUrl,
@@ -40,12 +39,9 @@ class BookScreen extends StatelessWidget with DrawerScreenProperties {
                   topText: book.title,
                   bottomText: "$translated: ${book.numberOfUnits}",
                 );
-              })
-            else
-              EmptyScreen(),
-          ],
-        ),
-      ),
+              }).toList(),
+            )
+          : EmptyScreen(),
     );
   }
 }

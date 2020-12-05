@@ -13,6 +13,9 @@ ThemeData getLightTheme() {
       headline6: TextStyle(
         color: Palette.white,
       ),
+      headline4: TextStyle(
+        color: Palette.secondary,
+      ),
       bodyText1: TextStyle(
         color: Palette.secondary,
       ),
@@ -53,6 +56,9 @@ ThemeData getDarkTheme() {
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
       headline6: TextStyle(
+        color: Palette.white,
+      ),
+      headline4: TextStyle(
         color: Palette.white,
       ),
       bodyText1: TextStyle(
