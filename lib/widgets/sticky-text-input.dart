@@ -9,11 +9,13 @@ class StickyTextInput extends StatelessWidget {
   final Function onSubmit;
   final bool showSubmitIcon;
   final FocusNode textFieldFocusNode;
+  bool enabled;
   StickyTextInput({
     @required this.textEditingController,
     @required this.onSubmit,
     this.showSubmitIcon = true,
     this.textFieldFocusNode,
+    this.enabled,
   });
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class StickyTextInput extends StatelessWidget {
                 },
                 focusNode: textFieldFocusNode,
                 style: TextStyle(color: theme.textTheme.bodyText1.color),
+                enabled: enabled,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(color: theme.hintColor),
                   hintText: placeholderText,

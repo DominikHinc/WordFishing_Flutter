@@ -21,5 +21,8 @@
     "dark_theme_name": "Dark",
     "light_theme_name": "Light",
 
+    "save_icon_tooltip": "Save current progress",
+    "list_finished": "Study finished!\nPress to continue",
+
     "text_input_placeholder": "Answer"
 }

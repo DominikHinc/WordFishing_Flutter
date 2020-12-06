@@ -1,6 +1,8 @@
 import 'package:WordFishing/models/book.dart';
+import 'package:WordFishing/models/question.dart';
 import 'package:WordFishing/models/unit.dart';
 import 'package:WordFishing/models/vocabulary.dart';
+import 'package:WordFishing/providers/settings-provider.dart';
 import 'package:WordFishing/services/db.dart';
 import 'package:WordFishing/utils/vocabulary-serialization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,6 +10,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:provider/provider.dart';
 
 class BooksProvider extends ChangeNotifier {
   List<Book> _books = [];
@@ -93,5 +96,19 @@ class BooksProvider extends ChangeNotifier {
 
   List<Vocabulary> getUnitVocabulary(String bookId, String unitNumber) {
     return getBookUnit(bookId, unitNumber).vocabulary;
+  }
+
+  List<Question> getQuestionsList(
+      BuildContext context, String bookId, String unitNumber) {
+    final settings = Provider.of<SettingsProvider>(context);
+    return getUnitVocabulary(bookId, unitNumber).map((e) {
+      return Question(
+        question:
+            settings.languageType == LanguageType.ENGLISH_POLISH ? e.en : e.pl,
+        answer:
+            settings.languageType == LanguageType.ENGLISH_POLISH ? e.pl : e.en,
+        numberOfRepeats: settings.numberOfRepeats,
+      );
+    }).toList();
   }
 }

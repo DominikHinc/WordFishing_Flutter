@@ -21,5 +21,8 @@
     "dark_theme_name": "Ciemny",
     "light_theme_name": "Jasny",
 
+    "save_icon_tooltip": "Zapisz obecny postęp",
+    "list_finished": "Nauka zakończona!\nNaciśnij aby kontynuować",
+
     "text_input_placeholder": "Odpowiedź"
 }
