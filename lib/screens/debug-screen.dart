@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:math' as math;
 import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
@@ -7,8 +7,7 @@ import 'package:WordFishing/services/analytics/analytics-events.dart';
 import 'package:WordFishing/services/performance/prerformance-events.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
-import 'package:WordFishing/widgets/custom-appbar.dart';
-import 'package:WordFishing/widgets/empty-screen.dart';
+import 'package:WordFishing/widgets/custom-snackbar.dart';
 import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:WordFishing/widgets/sticky-text-input.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -26,16 +25,43 @@ class DebugScreen extends StatefulWidget with DrawerScreenProperties {
   _DebugScreenState createState() => _DebugScreenState();
 }
 
-class _DebugScreenState extends State<DebugScreen> {
+class _DebugScreenState extends State<DebugScreen>
+    with SingleTickerProviderStateMixin {
   var isSwitched = false;
   var firebaseText = '';
   double currentProgress = 0.0;
+  double height = 0.0;
+  double opacity = 0.0;
+  double size = 0.0;
+  bool isDisplayed = false;
 
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
     final textController = TextEditingController();
+
+    // final snackbar = SnackBar(
+    //   content: Text(
+    //     "balls",
+    //     textAlign: TextAlign.center,
+    //   ),
+    //   shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.only(
+    //     topLeft: Radius.circular(4),
+    //     topRight: Radius.circular(4),
+    //   )),
+    //   behavior: SnackBarBehavior.floating,
+    //   padding: EdgeInsets.only(bottom: 50),
+    //   duration: Duration(seconds: 3),
+    //   margin: EdgeInsets.only(bottom: 50),
+    //   backgroundColor: Theme.of(context).accentColor,
+    //   elevation: 0,
+    //   animation: AnimationController(
+    //     duration: Duration(seconds: 3),
+    //     vsync: this,
+    //   ),
+    // );
     return Center(
       child: Scaffold(
         appBar: AppBar(
@@ -47,114 +73,154 @@ class _DebugScreenState extends State<DebugScreen> {
         ),
         body: SafeArea(
           child: LayoutBuilder(
-            builder: (context, constraints) => Column(
+            builder: (context, constraints) => Stack(
               children: [
-                Container(
-                  height: constraints.maxHeight -
-                      StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FloatingActionButton(
-                          child: Text("+1"),
-                          onPressed: () {
-                            setState(() {
-                              currentProgress += 1;
-                            });
-                          },
+                Column(
+                  children: [
+                    Container(
+                      height: constraints.maxHeight -
+                          StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              child: Text("+1"),
+                              onPressed: () {
+                                setState(() {
+                                  currentProgress += 1;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              height: spacing[2],
+                            ),
+                            FloatingActionButton(
+                              child: Text("res"),
+                              onPressed: () {
+                                setState(() {
+                                  isDisplayed = !isDisplayed;
+                                  // Future.delayed(Duration(seconds: 4), () {
+                                  //   setState(() {
+                                  //     isDisplayed = !isDisplayed;
+                                  //   });
+                                  // });
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              height: spacing[2],
+                            ),
+                            FloatingActionButton(
+                              child: Text("bar+"),
+                              onPressed: () {
+                                setState(() {
+                                  height = 100;
+                                  size = 30;
+                                  Future.delayed(Duration(seconds: 4), () {
+                                    setState(() {
+                                      height = 0;
+                                      size = 0;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                            Text(
+                                "Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
+                            Consumer<ApplicationThemeProvider>(
+                              builder: (_, theme, ___) => Switch(
+                                onChanged: (value) {
+                                  setState(() {
+                                    isSwitched = value;
+                                  });
+                                  theme.switchTheme(
+                                      value ? Themes.DARK : Themes.LIGHT);
+                                },
+                                value: isSwitched,
+                              ),
+                            ),
+                            Text(
+                              // NEW WAY OF TRANSLATING TEXT
+                              translate(context, 'example_message'),
+                              // THIS SHOULD BE THE DEFAULT WAY OF STYLING TEXT
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            FlatButton(
+                              child: Text("Crash!"),
+                              onPressed: () =>
+                                  FirebaseCrashlytics.instance.crash(),
+                            ),
+                            FlatButton(
+                              child: Text("Send performance event!"),
+                              onPressed: () {
+                                final performanceEvent =
+                                    measureVocabularyLoadTime();
+                                Timer(Duration(seconds: 5), () {
+                                  print("Stopped measuring time");
+                                  performanceEvent.stop();
+                                });
+                              },
+                            ),
+                            FlatButton(
+                              child: Text("Send analytics event!"),
+                              onPressed: () {
+                                print("Event will be sent");
+                                sendTestEvent();
+                              },
+                            ),
+                            if (booksProvider.dataLoaded)
+                              ...books.map((book) {
+                                return Column(
+                                  children: [
+                                    Image.network(book.imgUrl),
+                                    Text(book.title),
+                                    Text(
+                                        "Number of Units: ${book.numberOfUnits}"),
+                                    ...book.units.map((unit) {
+                                      return Column(
+                                        children: [
+                                          Text(
+                                            "Unit ${unit.unitNumber}: ${unit.unitTitle}",
+                                          ),
+                                          // Uncommment to fry CPU
+                                          // ...unit.vocabulary.map((translation) {
+                                          //   return Text(
+                                          //     "${translation.pl} - ${translation.en}",
+                                          //   );
+                                          // })
+                                        ],
+                                      );
+                                    }).toList(),
+                                  ],
+                                );
+                              }).toList()
+                          ],
                         ),
-                        SizedBox(
-                          height: spacing[2],
-                        ),
-                        FloatingActionButton(
-                          child: Text("res"),
-                          onPressed: () {
-                            setState(() {
-                              currentProgress = 0.0;
-                            });
-                          },
-                        ),
-                        SizedBox(
-                          height: spacing[2],
-                        ),
-                        Text(
-                            "Application Current Theme: ${isSwitched ? "Dark" : "Light"}"),
-                        Consumer<ApplicationThemeProvider>(
-                          builder: (_, theme, ___) => Switch(
-                            onChanged: (value) {
-                              setState(() {
-                                isSwitched = value;
-                              });
-                              theme.switchTheme(
-                                  value ? Themes.DARK : Themes.LIGHT);
-                            },
-                            value: isSwitched,
-                          ),
-                        ),
-                        Text(
-                          // NEW WAY OF TRANSLATING TEXT
-                          translate(context, 'example_message'),
-                          // THIS SHOULD BE THE DEFAULT WAY OF STYLING TEXT
-                          style: Theme.of(context).textTheme.subtitle1,
-                        ),
-                        FlatButton(
-                          child: Text("Crash!"),
-                          onPressed: () => FirebaseCrashlytics.instance.crash(),
-                        ),
-                        FlatButton(
-                          child: Text("Send performance event!"),
-                          onPressed: () {
-                            final performanceEvent =
-                                measureVocabularyLoadTime();
-                            Timer(Duration(seconds: 5), () {
-                              print("Stopped measuring time");
-                              performanceEvent.stop();
-                            });
-                          },
-                        ),
-                        FlatButton(
-                          child: Text("Send analytics event!"),
-                          onPressed: () {
-                            print("Event will be sent");
-                            sendTestEvent();
-                          },
-                        ),
-                        if (booksProvider.dataLoaded)
-                          ...books.map((book) {
-                            return Column(
-                              children: [
-                                Image.network(book.imgUrl),
-                                Text(book.title),
-                                Text("Number of Units: ${book.numberOfUnits}"),
-                                ...book.units.map((unit) {
-                                  return Column(
-                                    children: [
-                                      Text(
-                                        "Unit ${unit.unitNumber}: ${unit.unitTitle}",
-                                      ),
-                                      // Uncommment to fry CPU
-                                      // ...unit.vocabulary.map((translation) {
-                                      //   return Text(
-                                      //     "${translation.pl} - ${translation.en}",
-                                      //   );
-                                      // })
-                                    ],
-                                  );
-                                }).toList(),
-                              ],
-                            );
-                          }).toList()
-                      ],
+                      ),
                     ),
-                  ),
+                    StickyTextInput(
+                      animatedContainerheight: height,
+                      textEditingController: textController,
+                      onSubmit: () {
+                        print(textController.text);
+                        textController.clear();
+                      },
+                    ),
+                  ],
                 ),
-                StickyTextInput(
-                  textEditingController: textController,
-                  onSubmit: () {
-                    print(textController.text);
-                    textController.clear();
-                  },
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomSnackbar(
+                      onPressed: () {
+                        setState(() {
+                          isDisplayed = !isDisplayed;
+                        });
+                      },
+                      isDisplayed: isDisplayed,
+                    ),
+                  ],
                 ),
               ],
             ),
