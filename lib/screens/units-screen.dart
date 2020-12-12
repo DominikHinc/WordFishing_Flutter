@@ -2,6 +2,7 @@ import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/units_screen_arguments.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/screens/learning-screen.dart';
+import 'package:WordFishing/screens/settings-screen.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-grid-tile.dart';
 import 'package:WordFishing/widgets/custom-grid-view.dart';
@@ -24,6 +25,16 @@ class UnitsScreen extends StatelessWidget {
             title: Text(
               translate(context, drawerButtonTranslationKey),
             ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, SettingsScreen.routeName);
+                },
+                icon: Icon(
+                  Icons.settings,
+                ),
+              ),
+            ],
           ),
           body: booksProvider.dataLoaded
               ? CustomGridView(

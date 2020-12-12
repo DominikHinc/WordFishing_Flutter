@@ -1,4 +1,5 @@
 import 'package:WordFishing/theme/themes.dart';
+import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 
 enum Themes { LIGHT, DARK }
@@ -37,5 +38,11 @@ class ApplicationThemeProvider extends ChangeNotifier {
 
   ThemeData get currentTheme {
     return _currentTheme;
+  }
+
+  String getCurrentThemeTranslation(BuildContext context) {
+    return currentThemeType == Themes.LIGHT
+        ? translate(context, "light_theme_name")
+        : translate(context, "dark_theme_name");
   }
 }

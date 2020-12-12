@@ -1,13 +1,10 @@
 import 'package:WordFishing/providers/theme-provider.dart';
-import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ThemeSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String darkThemeTranslate = translate(context, "dark_theme_name");
-    String lightThemeTranslate = translate(context, "light_theme_name");
     var appThemeProvider = Provider.of<ApplicationThemeProvider>(context);
     return Row(
       children: [
@@ -18,7 +15,7 @@ class ThemeSwitch extends StatelessWidget {
           value: appThemeProvider.currentThemeType == Themes.LIGHT,
         ),
         Text(
-          'Mode: ${appThemeProvider.currentThemeType == Themes.LIGHT ? lightThemeTranslate : darkThemeTranslate}',
+          'Mode: ${appThemeProvider.getCurrentThemeTranslation(context)}',
           style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
         )
       ],

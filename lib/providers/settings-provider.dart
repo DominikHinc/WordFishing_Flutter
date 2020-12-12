@@ -1,3 +1,4 @@
+import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 
 enum InputType { TEXT_INPUT, MULTIPLE_CHOICE }
@@ -14,9 +15,9 @@ class SettingsProvider extends ChangeNotifier {
 
   /// How many times does a word needs to be answered correctly
   /// to be removed from the current list
-  int _numberOfRepeats = 1;
+  double _numberOfRepeats = 1;
 
-  int get numberOfRepeats {
+  double get numberOfRepeats {
     return _numberOfRepeats;
   }
 
@@ -26,5 +27,27 @@ class SettingsProvider extends ChangeNotifier {
 
   LanguageType get languageType {
     return _languageType;
+  }
+
+  void switchLanguageType(LanguageType languageType) {
+    _languageType = languageType;
+    notifyListeners();
+  }
+
+  void changeNumberOfRepeats(double numberOfRepeats) {
+    _numberOfRepeats = numberOfRepeats;
+    notifyListeners();
+  }
+
+  String getAnswerLanguageTranslation(BuildContext context) {
+    return languageType == LanguageType.ENGLISH_POLISH
+        ? translate(context, "english")
+        : translate(context, "polish");
+  }
+
+  String getQuestionLanguageTranslation(BuildContext context) {
+    return languageType == LanguageType.ENGLISH_POLISH
+        ? translate(context, "polish")
+        : translate(context, "english");
   }
 }
