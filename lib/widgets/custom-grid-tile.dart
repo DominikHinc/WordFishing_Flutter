@@ -1,5 +1,4 @@
 import 'package:WordFishing/utils/spacing.dart';
-import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/opacity-button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

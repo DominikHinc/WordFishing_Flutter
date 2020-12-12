@@ -34,34 +34,13 @@ class _DebugScreenState extends State<DebugScreen>
   double opacity = 0.0;
   double size = 0.0;
   bool isDisplayed = false;
+  bool isCorrect = false;
 
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
     final textController = TextEditingController();
-
-    // final snackbar = SnackBar(
-    //   content: Text(
-    //     "balls",
-    //     textAlign: TextAlign.center,
-    //   ),
-    //   shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(
-    //     topLeft: Radius.circular(4),
-    //     topRight: Radius.circular(4),
-    //   )),
-    //   behavior: SnackBarBehavior.floating,
-    //   padding: EdgeInsets.only(bottom: 50),
-    //   duration: Duration(seconds: 3),
-    //   margin: EdgeInsets.only(bottom: 50),
-    //   backgroundColor: Theme.of(context).accentColor,
-    //   elevation: 0,
-    //   animation: AnimationController(
-    //     duration: Duration(seconds: 3),
-    //     vsync: this,
-    //   ),
-    // );
     return Center(
       child: Scaffold(
         appBar: AppBar(
@@ -96,13 +75,14 @@ class _DebugScreenState extends State<DebugScreen>
                               height: spacing[2],
                             ),
                             FloatingActionButton(
-                              child: Text("res"),
+                              child: Text("cor_bar"),
                               onPressed: () {
                                 setState(() {
-                                  isDisplayed = !isDisplayed;
-                                  // Future.delayed(Duration(seconds: 4), () {
+                                  isDisplayed = true;
+                                  isCorrect = true;
+                                  // Future.delayed(Duration(seconds: 2), () {
                                   //   setState(() {
-                                  //     isDisplayed = !isDisplayed;
+                                  //     isDisplayed = false;
                                   //   });
                                   // });
                                 });
@@ -112,17 +92,16 @@ class _DebugScreenState extends State<DebugScreen>
                               height: spacing[2],
                             ),
                             FloatingActionButton(
-                              child: Text("bar+"),
+                              child: Text("wr_bar"),
                               onPressed: () {
                                 setState(() {
-                                  height = 100;
-                                  size = 30;
-                                  Future.delayed(Duration(seconds: 4), () {
-                                    setState(() {
-                                      height = 0;
-                                      size = 0;
-                                    });
-                                  });
+                                  isDisplayed = true;
+                                  isCorrect = false;
+                                  // Future.delayed(Duration(seconds: 2), () {
+                                  //   setState(() {
+                                  //     isDisplayed = false;
+                                  //   });
+                                  // });
                                 });
                               },
                             ),
@@ -213,9 +192,12 @@ class _DebugScreenState extends State<DebugScreen>
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomSnackbar(
+                      isCorrect: isCorrect,
+                      wrongMessageBottom:
+                          "tesfjokbfsaikhbfdsjhbsfdkjfsbndkhdfsbkjfsdbkhasdbkisfdhvbkjasdnbadsikjhbasfdkjbdasjhbdsakojfasdbvkasdbnklsdfabsadkbaksdb",
                       onPressed: () {
                         setState(() {
-                          isDisplayed = !isDisplayed;
+                          isDisplayed = false;
                         });
                       },
                       isDisplayed: isDisplayed,
