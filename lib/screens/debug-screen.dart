@@ -186,21 +186,16 @@ class _DebugScreenState extends State<DebugScreen>
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomSnackbar(
-                      isCorrect: isCorrect,
-                      wrongMessageBottom:
-                          "tesfjokbfsaikhbfdsjhbsfdkjfsbndkhdfsbkjfsdbkhasdbkisfdhvbkjasdnbadsikjhbasfdkjbdasjhbdsakojfasdbvkasdbnklsdfabsadkbaksdb",
-                      onPressed: () {
-                        setState(() {
-                          isDisplayed = false;
-                        });
-                      },
-                      isDisplayed: isDisplayed,
-                    ),
-                  ],
+                CustomSnackbar(
+                  isCorrect: isCorrect,
+                  wrongMessageBottom:
+                      "tesfjokbfsaikhbfdsjhbsfdkjfsbndkhdfsbkjfsdbkhasdbkisfdhvbkjasdnbadsikjhbasfdkjbdasjhbdsakojfasdbvkasdbnklsdfabsadkbaksdb",
+                  onPressed: () {
+                    setState(() {
+                      isDisplayed = false;
+                    });
+                  },
+                  isDisplayed: isDisplayed,
                 ),
               ],
             ),

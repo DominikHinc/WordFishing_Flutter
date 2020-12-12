@@ -2,13 +2,9 @@ import 'dart:math';
 
 import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/question.dart';
-import 'package:WordFishing/models/vocabulary.dart';
-import 'package:WordFishing/navigation/drawer-navigator.dart';
-import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/books-provider.dart';
-import 'package:WordFishing/providers/settings-provider.dart';
-import 'package:WordFishing/screens/book-screen.dart';
 import 'package:WordFishing/utils/translate.dart';
+import 'package:WordFishing/widgets/custom-snackbar.dart';
 import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:WordFishing/widgets/sticky-text-input.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +30,9 @@ class _LearningScreenState extends State<LearningScreen> {
   bool listFinished = false;
   bool listInitialized = false;
 
+  bool isSnackbarDisplayed = false;
+  bool isLastAnswerCorrect = false;
+
   @override
   void didChangeDependencies() {
     if (!listInitialized) _initializeList(context);
@@ -55,8 +54,37 @@ class _LearningScreenState extends State<LearningScreen> {
           context,
           learningScreenArguments.bookId,
           learningScreenArguments.unitNumber);
+
       startingLength = questionsList.length;
       listInitialized = true;
+      textFieldFocusNode.requestFocus();
+    });
+  }
+
+  void _displayWrongAnswerSnackbar() {
+    setState(() {
+      isLastAnswerCorrect = false;
+      isSnackbarDisplayed = true;
+      textFieldFocusNode.requestFocus();
+    });
+  }
+
+  void _displayCorrectAnswerSnackbar() {
+    setState(() {
+      isLastAnswerCorrect = true;
+      isSnackbarDisplayed = true;
+    });
+    Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+        isSnackbarDisplayed = false;
+      });
+    });
+  }
+
+  void _nextWord() {
+    setState(() {
+      textFieldEditingController.clear();
+      currentIndex = Random().nextInt(questionsList.length);
       textFieldFocusNode.requestFocus();
     });
   }
@@ -72,18 +100,15 @@ class _LearningScreenState extends State<LearningScreen> {
         } else {
           questionsList[currentIndex].numberOfRepeats--;
         }
-        print("GOOD ANSWER!");
+        if (questionsList.length < 1) {
+          textFieldFocusNode.unfocus();
+          listFinished = true;
+        } else {
+          _displayCorrectAnswerSnackbar();
+          _nextWord();
+        }
       } else {
-        print("WRONG ANSWER");
-      }
-
-      textFieldEditingController.clear();
-
-      if (questionsList.length < 1) {
-        textFieldFocusNode.unfocus();
-        listFinished = true;
-      } else {
-        currentIndex = Random().nextInt(questionsList.length);
+        _displayWrongAnswerSnackbar();
       }
     });
   }
@@ -109,6 +134,7 @@ class _LearningScreenState extends State<LearningScreen> {
             message: translate(context, 'save_icon_tooltip'),
             child: IconButton(
               onPressed: () {
+                // TODO implement
                 print("SAVE CURRENT PROGRESS");
               },
               icon: Icon(
@@ -122,50 +148,70 @@ class _LearningScreenState extends State<LearningScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return Column(
+            return Stack(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    textFieldFocusNode.unfocus();
-                    if (listFinished) Navigator.of(context).pop();
-                  },
-                  child: Container(
-                    height: constraints.maxHeight -
-                        StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                    ),
-                    child: SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight -
-                              StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        textFieldFocusNode.unfocus();
+                        if (listFinished) Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        height: constraints.maxHeight -
+                            StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).scaffoldBackgroundColor,
                         ),
-                        child: Center(
-                          child: Text(
-                            !listFinished
-                                ? questionsList[currentIndex].question
-                                : translate(
-                                    context,
-                                    'list_finished',
-                                  ),
-                            style: Theme.of(context).textTheme.headline4,
-                            textAlign: TextAlign.center,
+                        child: SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight -
+                                  StickyTextInput.STICKY_TEXT_INPUT_HEIGHT,
+                            ),
+                            child: Center(
+                              child: Text(
+                                !listFinished
+                                    ? questionsList[currentIndex].question
+                                    : translate(
+                                        context,
+                                        'list_finished',
+                                      ),
+                                style: Theme.of(context).textTheme.headline3,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                    StickyTextInput(
+                      textEditingController: textFieldEditingController,
+                      onSubmit: () {
+                        if (!listFinished && !isSnackbarDisplayed) {
+                          _onSubmit();
+                        } else {
+                          textFieldFocusNode.requestFocus();
+                        }
+                      },
+                      textFieldFocusNode: textFieldFocusNode,
+                      enabled: !listFinished,
+                    ),
+                  ],
                 ),
-                StickyTextInput(
-                  textEditingController: textFieldEditingController,
-                  onSubmit: () {
-                    print("Submited");
-                    if (!listFinished) _onSubmit();
+                CustomSnackbar(
+                  isCorrect: isLastAnswerCorrect,
+                  wrongMessageBottom: questionsList.length > 0
+                      ? questionsList[currentIndex].answer
+                      : "",
+                  onPressed: () {
+                    _nextWord();
+                    setState(() {
+                      isSnackbarDisplayed = false;
+                    });
                   },
-                  textFieldFocusNode: textFieldFocusNode,
-                  enabled: !listFinished,
-                )
+                  isDisplayed: isSnackbarDisplayed,
+                ),
               ],
             );
           },
