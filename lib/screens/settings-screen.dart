@@ -1,4 +1,5 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
+import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/settings-provider.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
@@ -20,9 +21,9 @@ class SettingsScreen extends StatefulWidget with DrawerScreenProperties {
 class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
-    bool getCurrentRoute = ModalRoute.of(context).settings.name == "./";
+    bool isDrawerRoute = ModalRoute.of(context).settings.name == INITIAL_ROUTE;
     return Scaffold(
-      appBar: getCurrentRoute
+      appBar: isDrawerRoute
           ? CustomAppBar(
               "settings_screen_label",
             )
