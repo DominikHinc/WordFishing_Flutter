@@ -23,10 +23,13 @@ ThemeData getLightTheme() {
         color: Palette.white,
       ),
       headline3: TextStyle(
+        color: Palette.secondary,
+      ),
+      headline4: TextStyle(
         fontSize: 28,
         color: Palette.neutralDark,
       ),
-      headline4: TextStyle(
+      headline5: TextStyle(
         fontSize: 18,
         color: Palette.neutralDark,
       ),
@@ -65,10 +68,13 @@ ThemeData getDarkTheme() {
         color: Palette.white,
       ),
       headline3: TextStyle(
-        fontSize: 28,
         color: Palette.white,
       ),
       headline4: TextStyle(
+        fontSize: 28,
+        color: Palette.white,
+      ),
+      headline5: TextStyle(
         fontSize: 18,
         color: Palette.white,
       ),

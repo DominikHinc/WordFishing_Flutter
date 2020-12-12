@@ -4,7 +4,7 @@
     "class": "Class: ",
     "number_of_units": "Number of Units",
     "wrong_answer_top": "Wrong answer!",
-    "wrong_answer_bottom": "Correct answer is",
+    "wrong_answer_bottom": "Correct answer is:",
     "correct_answer_top": "Bravo!",
     "correct_answer_bottom": "Correct answer!",
 
@@ -16,9 +16,13 @@
     "units_screen_label": "Units",
     "credits_screen_label": "Credits",
     "debug_screen_label": "Debug screen",
+    "learning_screen_label": "Learning",
     
     "dark_theme_name": "Dark",
     "light_theme_name": "Light",
+
+    "save_icon_tooltip": "Save current progress",
+    "list_finished": "Study finished!\nPress to continue",
 
     "text_input_placeholder": "Answer"
 }

@@ -4,7 +4,7 @@
     "class": "Klasa: ",
     "number_of_units": "Liczba Rozdziałów",
     "wrong_answer_top": "Zła odpowiedź!",
-    "wrong_answer_bottom": "Poprawna odpowiedź to",
+    "wrong_answer_bottom": "Poprawna odpowiedź to:",
     "correct_answer_top": "Brawo!",
     "correct_answer_bottom": "Poprawna odpowiedź!",
     
@@ -16,9 +16,13 @@
     "units_screen_label": "Rodziały",
     "credits_screen_label": "Autorzy",
     "debug_screen_label": "Ekran debugowania",
+    "learning_screen_label": "Nauka",
     
     "dark_theme_name": "Ciemny",
     "light_theme_name": "Jasny",
+
+    "save_icon_tooltip": "Zapisz obecny postęp",
+    "list_finished": "Nauka zakończona!\nNaciśnij aby kontynuować",
 
     "text_input_placeholder": "Odpowiedź"
 }
