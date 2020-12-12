@@ -10,7 +10,6 @@ class Palette {
   static const neutralDark = Color(0xff404040);
   static const darkgreen = Color(0xff00994C);
   static const lightgreen = Color(0xff00CC00);
-  static const darkred = Color(0xffFF6666);
   static const lightred = Color(0xffffcccb);
   static const neutral = Color(0xffafacac);
 }

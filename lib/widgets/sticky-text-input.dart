@@ -7,7 +7,6 @@ class StickyTextInput extends StatelessWidget {
   static const STICKY_TEXT_INPUT_HEIGHT = 50;
   final TextEditingController textEditingController;
   final Function onSubmit;
-  final double animatedContainerheight;
   final bool showSubmitIcon;
   final FocusNode textFieldFocusNode;
   StickyTextInput({
@@ -15,7 +14,6 @@ class StickyTextInput extends StatelessWidget {
     @required this.onSubmit,
     this.showSubmitIcon = true,
     this.textFieldFocusNode,
-    this.animatedContainerheight,
   });
   @override
   Widget build(BuildContext context) {

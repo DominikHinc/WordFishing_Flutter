@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
@@ -179,7 +178,6 @@ class _DebugScreenState extends State<DebugScreen>
                       ),
                     ),
                     StickyTextInput(
-                      animatedContainerheight: height,
                       textEditingController: textController,
                       onSubmit: () {
                         print(textController.text);
