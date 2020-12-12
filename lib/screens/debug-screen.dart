@@ -40,28 +40,6 @@ class _DebugScreenState extends State<DebugScreen>
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
     final textController = TextEditingController();
-
-    // final snackbar = SnackBar(
-    //   content: Text(
-    //     "balls",
-    //     textAlign: TextAlign.center,
-    //   ),
-    //   shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(
-    //     topLeft: Radius.circular(4),
-    //     topRight: Radius.circular(4),
-    //   )),
-    //   behavior: SnackBarBehavior.floating,
-    //   padding: EdgeInsets.only(bottom: 50),
-    //   duration: Duration(seconds: 3),
-    //   margin: EdgeInsets.only(bottom: 50),
-    //   backgroundColor: Theme.of(context).accentColor,
-    //   elevation: 0,
-    //   animation: AnimationController(
-    //     duration: Duration(seconds: 3),
-    //     vsync: this,
-    //   ),
-    // );
     return Center(
       child: Scaffold(
         appBar: AppBar(
@@ -215,7 +193,7 @@ class _DebugScreenState extends State<DebugScreen>
                       isCorrect: isCorrect,
                       onPressed: () {
                         setState(() {
-                          isDisplayed = !isDisplayed;
+                          isDisplayed = false;
                         });
                       },
                       isDisplayed: isDisplayed,
