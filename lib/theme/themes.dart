@@ -22,12 +22,23 @@ ThemeData getLightTheme() {
       subtitle2: TextStyle(
         color: Palette.white,
       ),
+      headline3: TextStyle(
+        fontSize: 28,
+        color: Palette.neutralDark,
+      ),
+      headline4: TextStyle(
+        fontSize: 18,
+        color: Palette.neutralDark,
+      ),
     ),
     buttonColor: Palette.white,
     cardColor: Palette.neutral,
     hintColor: Palette.secondary,
     //THIS IS ONLY USED FOR THE LOGO
     canvasColor: Palette.white,
+    //THIS IS USED FOR THE SNACKBAR
+    indicatorColor: Palette.lightgreen,
+    errorColor: Palette.lightred,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
@@ -53,12 +64,23 @@ ThemeData getDarkTheme() {
       subtitle2: TextStyle(
         color: Palette.white,
       ),
+      headline3: TextStyle(
+        fontSize: 28,
+        color: Palette.white,
+      ),
+      headline4: TextStyle(
+        fontSize: 18,
+        color: Palette.white,
+      ),
     ),
     buttonColor: Palette.white,
     cardColor: Palette.secondary,
     hintColor: Palette.neutral,
     //THIS IS ONLY USED FOR THE LOGO
     canvasColor: Palette.white,
+    //THIS IS USED FOR THE SNACKBAR
+    indicatorColor: Palette.darkgreen,
+    errorColor: Palette.primary,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

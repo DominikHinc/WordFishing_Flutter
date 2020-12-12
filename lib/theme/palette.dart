@@ -7,5 +7,9 @@ class Palette {
   static const backgroundSecondary = Color(0xffA0A0A0);
   static const accents = Color(0xff5B5189);
   static const white = Color(0xffffffff);
+  static const neutralDark = Color(0xff404040);
+  static const darkgreen = Color(0xff00994C);
+  static const lightgreen = Color(0xff00CC00);
+  static const lightred = Color(0xffffcccb);
   static const neutral = Color(0xffafacac);
 }

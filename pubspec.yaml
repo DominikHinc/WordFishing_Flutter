@@ -59,6 +59,7 @@ dependencies:
   cached_network_image: ^2.3.3
   flutter_svg: ^0.19.1
   responsive_flutter: ^0.0.4
+  flushbar: ^1.10.4
 
 dev_dependencies:
   flutter_test:

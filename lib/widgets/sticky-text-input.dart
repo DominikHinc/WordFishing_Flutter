@@ -15,7 +15,6 @@ class StickyTextInput extends StatelessWidget {
     this.showSubmitIcon = true,
     this.textFieldFocusNode,
   });
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
