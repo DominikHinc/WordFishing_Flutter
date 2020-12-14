@@ -1,4 +1,5 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
+import 'package:WordFishing/widgets/achievement-screen-tile.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +15,7 @@ class AchievementsScreen extends StatelessWidget with DrawerScreenProperties {
       appBar: CustomAppBar(
         "achievements_screen_label",
       ),
-      body: Center(
-        child: Text("Achievements Screen"),
-      ),
+      body: AchievementScreenTile(),
     );
   }
 }
