@@ -107,7 +107,7 @@ class BooksProvider extends ChangeNotifier {
             settings.languageType == LanguageType.ENGLISH_POLISH ? e.en : e.pl,
         answer:
             settings.languageType == LanguageType.ENGLISH_POLISH ? e.pl : e.en,
-        numberOfRepeats: settings.numberOfRepeats.toInt(),
+        numberOfRepeats: settings.numberOfRepeats,
       );
     }).toList();
   }

@@ -15,9 +15,9 @@ class SettingsProvider extends ChangeNotifier {
 
   /// How many times does a word needs to be answered correctly
   /// to be removed from the current list
-  double _numberOfRepeats = 1;
+  int _numberOfRepeats = 1;
 
-  double get numberOfRepeats {
+  int get numberOfRepeats {
     return _numberOfRepeats;
   }
 
@@ -34,7 +34,7 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeNumberOfRepeats(double numberOfRepeats) {
+  void changeNumberOfRepeats(int numberOfRepeats) {
     _numberOfRepeats = numberOfRepeats;
     notifyListeners();
   }

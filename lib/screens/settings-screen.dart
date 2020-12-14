@@ -7,7 +7,7 @@ import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatefulWidget with DrawerScreenProperties {
+class SettingsScreen extends StatelessWidget with DrawerScreenProperties {
   static const routeName = "./Settings";
 
   final routeNameLocal = SettingsScreen.routeName;
@@ -15,10 +15,6 @@ class SettingsScreen extends StatefulWidget with DrawerScreenProperties {
   final drawerButtonTranslationKey = "settings_screen_label";
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     bool isDrawerRoute = ModalRoute.of(context).settings.name == INITIAL_ROUTE;
@@ -52,13 +48,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Slider(
                       activeColor: Theme.of(context).accentColor,
                       inactiveColor: Theme.of(context).hintColor,
-                      value: settingsProvider.numberOfRepeats,
+                      value: settingsProvider.numberOfRepeats.toDouble(),
                       min: 1,
                       max: 10,
                       onChanged: (newValue) {
-                        setState(() {
-                          settingsProvider.changeNumberOfRepeats(newValue);
-                        });
+                        settingsProvider
+                            .changeNumberOfRepeats(newValue.toInt());
                       },
                     ),
                   ),
@@ -84,11 +79,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       value: settingsProvider.languageType ==
                           LanguageType.POLISH_ENGLISH,
                       onChanged: (changeValue) {
-                        setState(() {
-                          settingsProvider.switchLanguageType(changeValue
-                              ? LanguageType.POLISH_ENGLISH
-                              : LanguageType.ENGLISH_POLISH);
-                        });
+                        settingsProvider.switchLanguageType(changeValue
+                            ? LanguageType.POLISH_ENGLISH
+                            : LanguageType.ENGLISH_POLISH);
                       },
                     ),
                   ),
