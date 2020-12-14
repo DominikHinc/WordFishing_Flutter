@@ -11,10 +11,10 @@ Map<String, Widget Function(BuildContext)> getDrawerRouteNames() {
   return {
     BookScreen.routeName: (ctx) => BookScreen(),
     AuthScreen.routeName: (ctx) => AuthScreen(),
-    SettingsScreen.routeName: (ctx) => SettingsScreen(),
     CreditsScreen.routeName: (ctx) => CreditsScreen(),
     CustomListScreen.routeName: (ctx) => CustomListScreen(),
     AchievementsScreen.routeName: (ctx) => AchievementsScreen(),
+    SettingsScreen.routeName: (ctx) => SettingsScreen(),
     DebugScreen.routeName: (ctx) => DebugScreen(),
   };
 }

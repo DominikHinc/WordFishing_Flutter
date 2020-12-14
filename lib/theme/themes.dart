@@ -87,6 +87,7 @@ ThemeData getDarkTheme() {
     //THIS IS USED FOR THE SNACKBAR
     indicatorColor: Palette.darkgreen,
     errorColor: Palette.primary,
+    sliderTheme: SliderThemeData(thumbShape: RoundSliderThumbShape()),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

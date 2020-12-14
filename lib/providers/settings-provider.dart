@@ -1,3 +1,4 @@
+import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 
 enum InputType { TEXT_INPUT, MULTIPLE_CHOICE }
@@ -26,5 +27,27 @@ class SettingsProvider extends ChangeNotifier {
 
   LanguageType get languageType {
     return _languageType;
+  }
+
+  void switchLanguageType(LanguageType languageType) {
+    _languageType = languageType;
+    notifyListeners();
+  }
+
+  void changeNumberOfRepeats(int numberOfRepeats) {
+    _numberOfRepeats = numberOfRepeats;
+    notifyListeners();
+  }
+
+  String getAnswerLanguageTranslation(BuildContext context) {
+    return languageType == LanguageType.ENGLISH_POLISH
+        ? translate(context, "english")
+        : translate(context, "polish");
+  }
+
+  String getQuestionLanguageTranslation(BuildContext context) {
+    return languageType == LanguageType.ENGLISH_POLISH
+        ? translate(context, "polish")
+        : translate(context, "english");
   }
 }

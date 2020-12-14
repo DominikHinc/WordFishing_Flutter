@@ -2,11 +2,18 @@
     "example_message": "This is an example message written in english",
     "unit": "Unit: ",
     "class": "Class: ",
+    "polish": "polish",
+    "english": "english",
+    
     "number_of_units": "Number of Units",
     "wrong_answer_top": "Wrong answer!",
     "wrong_answer_bottom": "Correct answer is:",
     "correct_answer_top": "Bravo!",
     "correct_answer_bottom": "Correct answer!",
+
+    "number_of_repeats": "Number of repeats: ",
+    "answer_language": "Answer language: ",
+    "question_language": "Question language: ",
 
     "book_screen_label": "Books",
     "auth_screen_label": "Log/Sign in",
