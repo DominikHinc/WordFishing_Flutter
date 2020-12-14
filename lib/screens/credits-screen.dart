@@ -15,7 +15,11 @@ class CreditsScreen extends StatelessWidget with DrawerScreenProperties {
         "credits_screen_label",
       ),
       body: Center(
-        child: Text("Application made by Adam Tymosz and Dominik Hinc"),
+        child: Text(
+          "Application made by: \n\n Dominik Hinc \n\n Adam Tymosz \n\n Special thanks for providing \n us with vocabulary to: \n\n Marcin Hesse",
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline6,
+        ),
       ),
     );
   }
