@@ -43,7 +43,7 @@ class AchievementScreenTile extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: spacing[3],
+                            height: padding,
                           ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
