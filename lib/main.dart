@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:WordFishing/navigation/routes-config.dart';
+import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/drawer-navigation-provider.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: SettingsProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: AchievementProvider(),
         ),
       ],
       child: Consumer<ApplicationThemeProvider>(

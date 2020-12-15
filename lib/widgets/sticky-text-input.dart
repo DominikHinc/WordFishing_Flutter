@@ -9,7 +9,7 @@ class StickyTextInput extends StatelessWidget {
   final Function onSubmit;
   final bool showSubmitIcon;
   final FocusNode textFieldFocusNode;
-  bool enabled;
+  final bool enabled;
   StickyTextInput({
     @required this.textEditingController,
     @required this.onSubmit,

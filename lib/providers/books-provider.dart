@@ -44,7 +44,7 @@ class BooksProvider extends ChangeNotifier {
           (await databaseReference.child('last_update').once()).value;
     } catch (e, s) {
       await FirebaseCrashlytics.instance
-          .recordError(e, s, reason: 'CANNOT GET LAST UPTADE FROM DATABASE');
+          .recordError(e, s, reason: 'CANNOT GET LAST UPDATE FROM DATABASE');
     }
 
     if (localLastUpdate == databaseLastUpdate) {
