@@ -17,13 +17,18 @@ class _EmptyScreenState extends State<EmptyScreen> {
       SizedBox(
         height: spacing[3],
       ),
-      Text("Loading..."),
+      Text(
+        "Loading...",
+      ),
     ],
   );
   _EmptyScreenState() {
     _timer = new Timer(const Duration(seconds: 15), () {
       setState(() {
-        _emptyScreenChild = Text("Service currently unavailable");
+        _emptyScreenChild = Text(
+          "Service currently unavailable",
+          style: Theme.of(context).textTheme.headline6,
+        );
       });
     });
   }
