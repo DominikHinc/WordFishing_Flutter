@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:WordFishing/utils/spacing.dart';
+import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
 
 class EmptyScreen extends StatefulWidget {
@@ -10,25 +11,12 @@ class EmptyScreen extends StatefulWidget {
 
 class _EmptyScreenState extends State<EmptyScreen> {
   Timer _timer;
-  Widget _emptyScreenChild = Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      CircularProgressIndicator(),
-      SizedBox(
-        height: spacing[3],
-      ),
-      Text(
-        "Loading...",
-      ),
-    ],
-  );
+  bool _timerPassed = false;
+
   _EmptyScreenState() {
     _timer = new Timer(const Duration(seconds: 15), () {
       setState(() {
-        _emptyScreenChild = Text(
-          "Service currently unavailable",
-          style: Theme.of(context).textTheme.headline6,
-        );
+        _timerPassed = !_timerPassed;
       });
     });
   }
@@ -40,7 +28,23 @@ class _EmptyScreenState extends State<EmptyScreen> {
 
   Widget build(BuildContext context) {
     return Center(
-      child: _emptyScreenChild,
+      child: _timerPassed
+          ? Text(
+              translate(context, "service_currently_unavailable"),
+              style: Theme.of(context).textTheme.headline6,
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: spacing[3],
+                ),
+                Text(
+                  translate(context, "loading"),
+                ),
+              ],
+            ),
     );
   }
 }

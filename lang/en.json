@@ -1,5 +1,7 @@
 {
     "example_message": "This is an example message written in english",
+    "loading": "Loading...",
+    "service_currently_unavailable": "Service currently unavailable",
     "unit": "Unit: ",
     "class": "Class: ",
     "polish": "polish",
