@@ -1,5 +1,7 @@
 {
     "example_message": "To jest przykładowa wiadomość napisana po polsku",
+    "loading": "Ładuję...",
+    "service_currently_unavailable": "Usługa tymczasowo niedostępna",
     "unit": "Rozdział: ",
     "class": "Klasa: ",
     "polish": "polski",
