@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/question.dart';
 import 'package:WordFishing/providers/books-provider.dart';
+import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
+import 'package:WordFishing/widgets/achievement-pop-up.dart';
 import 'package:WordFishing/widgets/custom-snackbar.dart';
 import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:WordFishing/widgets/sticky-text-input.dart';
@@ -211,6 +213,15 @@ class _LearningScreenState extends State<LearningScreen> {
                     });
                   },
                   isDisplayed: isSnackbarDisplayed,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: spacing[6]),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: AchievementPopUp(
+                      imgColor: Theme.of(context).accentColor,
+                    ),
+                  ),
                 ),
               ],
             );

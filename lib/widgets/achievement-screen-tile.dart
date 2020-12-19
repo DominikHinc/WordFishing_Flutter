@@ -1,11 +1,10 @@
-import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AchievementScreenTile extends StatelessWidget {
+class AchievementScreenTile extends StatefulWidget {
   final double maxAchievementAmount;
   final bool isCompleted;
   AchievementScreenTile({
@@ -13,10 +12,16 @@ class AchievementScreenTile extends StatelessWidget {
     this.isCompleted = false,
   });
 
-  final bool isAchievementSelected = false;
+  @override
+  _AchievementScreenTileState createState() => _AchievementScreenTileState();
+}
+
+class _AchievementScreenTileState extends State<AchievementScreenTile> {
+  bool _isAchievementSelected = false;
+  int _currentIndex;
+
   @override
   Widget build(BuildContext context) {
-    final achievementProvider = Provider.of<AchievementProvider>(context);
     final booksProvider = Provider.of<BooksProvider>(context);
     final books = booksProvider.books;
     final mediaQuerySize = MediaQuery.of(context).size;
@@ -36,9 +41,10 @@ class AchievementScreenTile extends StatelessWidget {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        achievementProvider
-                            .getIsAchievementSelected(!isAchievementSelected);
-                        achievementProvider.getCurrentAchievementIndex(i);
+                        setState(() {
+                          _isAchievementSelected = !_isAchievementSelected;
+                          _currentIndex = i;
+                        });
                       },
                       child: Column(
                         children: [
@@ -78,7 +84,8 @@ class AchievementScreenTile extends StatelessWidget {
                                               style: achievementScreenTextStyle,
                                             ),
                                             ProgressBar(
-                                              maxAmount: maxAchievementAmount,
+                                              maxAmount:
+                                                  book.numberOfUnits.toDouble(),
                                               currentProgress: 0,
                                             ),
                                           ],
@@ -98,14 +105,14 @@ class AchievementScreenTile extends StatelessWidget {
                             child: AnimatedContainer(
                               duration: animationDuration,
                               color: Theme.of(context).primaryColor,
-                              height: achievementProvider.isBookSelected &&
-                                      i == achievementProvider.currentBookIndex
-                                  ? 200
-                                  : 0,
+                              height:
+                                  _isAchievementSelected && i == _currentIndex
+                                      ? 200
+                                      : 0,
                               width: mediaQuerySize.width / 1.3,
                               //TODO add a list of achievements to the ListView
                               child: ListView.builder(
-                                itemCount: maxAchievementAmount.toInt(),
+                                itemCount: book.numberOfUnits,
                                 itemBuilder: (context, index) {
                                   return ListTile(
                                     leading: Text(
@@ -114,7 +121,7 @@ class AchievementScreenTile extends StatelessWidget {
                                       style: achievementScreenTextStyle,
                                     ),
                                     trailing: Icon(
-                                      isCompleted
+                                      widget.isCompleted
                                           ? Icons.check_box
                                           : Icons.check_box_outline_blank,
                                       color: Theme.of(context).accentColor,
