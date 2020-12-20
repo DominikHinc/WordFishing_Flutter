@@ -111,4 +111,8 @@ class BooksProvider extends ChangeNotifier {
       );
     }).toList();
   }
+
+  int getVocabularyListWordCount(String bookId, String unitNumber) {
+    return getUnitVocabulary(bookId, unitNumber).length;
+  }
 }

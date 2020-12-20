@@ -4,7 +4,7 @@ import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/question.dart';
 import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
-import 'package:WordFishing/utils/spacing.dart';
+import 'package:WordFishing/providers/progress-provider.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/achievement-popup.dart';
 import 'package:WordFishing/widgets/custom-snackbar.dart';
@@ -62,27 +62,52 @@ class _LearningScreenState extends State<LearningScreen> {
       context,
       listen: false,
     );
+    final booksProvider = Provider.of<BooksProvider>(context);
+    // final progressProvider = Provider.of<ProgressProvider>(context);
 
     setState(() {
-      // questionsList = Provider.of<BooksProvider>(context).getQuestionsList(
-      //     context,
-      //     learningScreenArguments.bookId,
-      //     learningScreenArguments.unitNumber);
-      questionsList = [
-        Question(question: 'pog', answer: 'pog', numberOfRepeats: 1),
-        Question(question: 'pog', answer: 'pog', numberOfRepeats: 1)
-      ];
-
-      if (!(achievementProvider
-          .getBookCompletedUnits(learningScreenArguments.bookId)
-          .contains(learningScreenArguments.unitNumber))) {
-        completeUnitAchievement = achievementProvider.addUnitCompleted;
-      }
-      startingLength = questionsList.length;
-      listInitialized = true;
-      textFieldFocusNode.requestFocus();
       bookId = learningScreenArguments.bookId;
       unitNumber = learningScreenArguments.unitNumber;
+
+      if (learningScreenArguments.loadPreviouslySaved) {
+        questionsList = Provider.of<ProgressProvider>(context).getUnitProgress(
+          bookId,
+          unitNumber,
+        );
+
+        // Wrokaround for issue with removing used provider value
+        Future.delayed(Duration.zero, () {
+          Provider.of<ProgressProvider>(context, listen: false)
+              .deleteUnitProgress(
+            bookId,
+            unitNumber,
+          );
+        });
+      } else {
+        // TODO uncomment
+        // questionsList = booksProvider.getQuestionsList(
+        //     context,
+        //     learningScreenArguments.bookId,
+        //     learningScreenArguments.unitNumber,);
+        questionsList = [
+          Question(question: 'pog', answer: 'pog', numberOfRepeats: 1),
+          Question(question: 'pog', answer: 'pog', numberOfRepeats: 1)
+        ];
+      }
+
+      if (!(achievementProvider
+          .getBookCompletedUnits(bookId)
+          .contains(unitNumber))) {
+        completeUnitAchievement = achievementProvider.addUnitCompleted;
+      }
+      startingLength = learningScreenArguments.loadPreviouslySaved
+          ? booksProvider.getVocabularyListWordCount(
+              bookId,
+              unitNumber,
+            )
+          : questionsList.length;
+      listInitialized = true;
+      textFieldFocusNode.requestFocus();
     });
   }
 
@@ -157,6 +182,11 @@ class _LearningScreenState extends State<LearningScreen> {
     });
   }
 
+  void onProgressSave(BuildContext context) {
+    Provider.of<ProgressProvider>(context, listen: false)
+        .addVocabularyProgressList(bookId, unitNumber, questionsList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,8 +208,7 @@ class _LearningScreenState extends State<LearningScreen> {
             message: translate(context, 'save_icon_tooltip'),
             child: IconButton(
               onPressed: () {
-                // TODO implement
-                print("SAVE CURRENT PROGRESS");
+                onProgressSave(context);
               },
               icon: Icon(
                 Icons.save,

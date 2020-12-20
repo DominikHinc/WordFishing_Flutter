@@ -4,6 +4,7 @@ import 'package:WordFishing/navigation/routes-config.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/drawer-navigation-provider.dart';
+import 'package:WordFishing/providers/progress-provider.dart';
 import 'package:WordFishing/providers/settings-provider.dart';
 import 'package:WordFishing/providers/theme-provider.dart';
 import 'package:WordFishing/services/app-localizations.dart';
@@ -54,6 +55,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: SettingsProvider(),
         ),
+<<<<<<< HEAD
+=======
+        ChangeNotifierProvider.value(
+          value: AchievementProvider(),
+        ),
+        ChangeNotifierProvider.value(
+          value: ProgressProvider(),
+        ),
+>>>>>>> Add save logic
       ],
       child: Consumer<ApplicationThemeProvider>(
         builder: (_, theme, __) => MaterialApp(
