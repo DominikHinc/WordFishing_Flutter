@@ -37,5 +37,7 @@
     "text_input_placeholder": "Odpowiedź",
 
 
-    "achievement_unlocked" : "Osiągnięcie odblokowane!"
+    "achievement_unlocked" : "Osiągnięcie odblokowane!",
+
+    "achievementToComplete": "Ukończ rozdział: "
 }

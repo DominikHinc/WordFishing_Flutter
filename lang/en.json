@@ -35,6 +35,9 @@
 
     "text_input_placeholder": "Answer",
 
-    "achievement_unlocked" : "Achievement unlocked!"
+    "achievement_unlocked" : "Achievement unlocked!",
+
+    "achievementToComplete": "Complete unit: "
+
 
 }

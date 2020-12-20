@@ -1,5 +1,6 @@
 import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/units_screen_arguments.dart';
+import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/screens/learning-screen.dart';
 import 'package:WordFishing/screens/settings-screen.dart';
@@ -16,6 +17,7 @@ class UnitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context);
+    final achievementsProvider = Provider.of<AchievementProvider>(context);
     final UnitsScreenArguments unitsScreenArguments =
         ModalRoute.of(context).settings.arguments;
     final translated = translate(context, "unit");
@@ -45,6 +47,9 @@ class UnitsScreen extends StatelessWidget {
                     return CustomGridTile(
                       title: units.unitTitle,
                       bottomText: "$translated${units.unitNumber}",
+                      completed: achievementsProvider
+                          .getBookCompletedUnits(unitsScreenArguments.bookId)
+                          .contains(units.unitNumber),
                       onPressed: () {
                         Navigator.pushNamed(
                           context,

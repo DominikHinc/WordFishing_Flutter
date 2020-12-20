@@ -2,10 +2,11 @@ import 'dart:math';
 
 import 'package:WordFishing/models/learning-screen-arguments.dart';
 import 'package:WordFishing/models/question.dart';
+import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/utils/translate.dart';
-import 'package:WordFishing/widgets/achievement-pop-up.dart';
+import 'package:WordFishing/widgets/achievement-popup.dart';
 import 'package:WordFishing/widgets/custom-snackbar.dart';
 import 'package:WordFishing/widgets/progress-bar.dart';
 import 'package:WordFishing/widgets/sticky-text-input.dart';
@@ -27,6 +28,9 @@ class _LearningScreenState extends State<LearningScreen> {
   final TextEditingController textFieldEditingController =
       TextEditingController();
 
+  String bookId = "";
+  String unitNumber = "";
+
   int startingLength = 0;
   int currentIndex = 0;
   bool listFinished = false;
@@ -34,6 +38,10 @@ class _LearningScreenState extends State<LearningScreen> {
 
   bool isSnackbarDisplayed = false;
   bool isLastAnswerCorrect = false;
+
+  bool achievementDisplayed = false;
+
+  Function completeUnitAchievement;
 
   @override
   void didChangeDependencies() {
@@ -50,16 +58,31 @@ class _LearningScreenState extends State<LearningScreen> {
   void _initializeList(BuildContext context) {
     final LeariningScreenArguments learningScreenArguments =
         ModalRoute.of(context).settings.arguments;
+    final achievementProvider = Provider.of<AchievementProvider>(
+      context,
+      listen: false,
+    );
 
     setState(() {
-      questionsList = Provider.of<BooksProvider>(context).getQuestionsList(
-          context,
-          learningScreenArguments.bookId,
-          learningScreenArguments.unitNumber);
+      // questionsList = Provider.of<BooksProvider>(context).getQuestionsList(
+      //     context,
+      //     learningScreenArguments.bookId,
+      //     learningScreenArguments.unitNumber);
+      questionsList = [
+        Question(question: 'pog', answer: 'pog', numberOfRepeats: 1),
+        Question(question: 'pog', answer: 'pog', numberOfRepeats: 1)
+      ];
 
+      if (!(achievementProvider
+          .getBookCompletedUnits(learningScreenArguments.bookId)
+          .contains(learningScreenArguments.unitNumber))) {
+        completeUnitAchievement = achievementProvider.addUnitCompleted;
+      }
       startingLength = questionsList.length;
       listInitialized = true;
       textFieldFocusNode.requestFocus();
+      bookId = learningScreenArguments.bookId;
+      unitNumber = learningScreenArguments.unitNumber;
     });
   }
 
@@ -91,6 +114,26 @@ class _LearningScreenState extends State<LearningScreen> {
     });
   }
 
+  void _onListFinished() {
+    textFieldFocusNode.unfocus();
+    listFinished = true;
+    if (completeUnitAchievement != null) {
+      completeUnitAchievement(bookId, unitNumber);
+      setState(() {
+        achievementDisplayed = true;
+      });
+      // TODO clear future
+      Future.delayed(
+        Duration(seconds: 4),
+        () {
+          setState(() {
+            achievementDisplayed = false;
+          });
+        },
+      );
+    }
+  }
+
   void _onSubmit() {
     textFieldFocusNode.requestFocus();
 
@@ -103,8 +146,7 @@ class _LearningScreenState extends State<LearningScreen> {
           questionsList[currentIndex].numberOfRepeats--;
         }
         if (questionsList.length < 1) {
-          textFieldFocusNode.unfocus();
-          listFinished = true;
+          _onListFinished();
         } else {
           _displayCorrectAnswerSnackbar();
           _nextWord();
@@ -214,15 +256,10 @@ class _LearningScreenState extends State<LearningScreen> {
                   },
                   isDisplayed: isSnackbarDisplayed,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: spacing[6]),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: AchievementPopUp(
-                      imgColor: Theme.of(context).accentColor,
-                    ),
-                  ),
-                ),
+                AchievementPopup(
+                  message: "${translate(context, "unit")} $unitNumber",
+                  displayed: achievementDisplayed,
+                )
               ],
             );
           },
