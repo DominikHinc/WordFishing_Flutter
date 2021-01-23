@@ -1,4 +1,5 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
+import 'package:WordFishing/utils/translate.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class CreditsScreen extends StatelessWidget with DrawerScreenProperties {
       ),
       body: Center(
         child: Text(
-          "Application made by: \n\n Dominik Hinc \n\n Adam Tymosz \n\n Special thanks for providing \n us with vocabulary to: \n\n Marcin Hesse",
+          translate(context, 'credits'),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline6,
         ),

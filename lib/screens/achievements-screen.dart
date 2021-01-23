@@ -1,6 +1,7 @@
 import 'package:WordFishing/models/drawer-screen-model.dart';
 import 'package:WordFishing/providers/achievement-provider.dart';
 import 'package:WordFishing/providers/books-provider.dart';
+import 'package:WordFishing/utils/spacing.dart';
 import 'package:WordFishing/widgets/achievement-tile.dart';
 import 'package:WordFishing/widgets/custom-appbar.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +24,21 @@ class AchievementsScreen extends StatelessWidget with DrawerScreenProperties {
         "achievements_screen_label",
       ),
       body: SingleChildScrollView(
-        child: Column(
-            children: booksProvider.books
-                .map(
-                  (book) => AchievementTile(
-                    book.title,
-                    book.imgUrl,
-                    book.numberOfUnits,
-                    achievementProvider.getBookCompletedUnits(book.id),
-                  ),
-                )
-                .toList()),
+        child: Column(children: [
+          ...booksProvider.books
+              .map(
+                (book) => AchievementTile(
+                  book.title,
+                  book.imgUrl,
+                  book.numberOfUnits,
+                  achievementProvider.getBookCompletedUnits(book.id),
+                ),
+              )
+              .toList(),
+          SizedBox(
+            height: spacing[4],
+          )
+        ]),
       ),
       body: AchievementScreenTile(),
     );

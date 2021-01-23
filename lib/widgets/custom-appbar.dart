@@ -9,11 +9,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Size preferredSize;
 
   final String label;
+  final Function onDrawerIconPressed;
 
-  CustomAppBar(
-    this.label, {
-    Key key,
-  })  : preferredSize = Size.fromHeight(50.0),
+  CustomAppBar(this.label, {Key key, this.onDrawerIconPressed})
+      : preferredSize = Size.fromHeight(50.0),
         super(key: key);
 
   @override
@@ -30,6 +29,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 : Icon(Icons.menu_open, color: Theme.of(context).buttonColor),
             onPressed: () {
               drawerAnimationProvider.toggleTransform(context);
+              if (onDrawerIconPressed != null) onDrawerIconPressed();
             },
           ),
         ),

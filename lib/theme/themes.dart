@@ -19,6 +19,9 @@ ThemeData getLightTheme() {
       bodyText2: TextStyle(
         color: Palette.secondary,
       ),
+      subtitle1: TextStyle(
+        color: Palette.secondary,
+      ),
       subtitle2: TextStyle(
         color: Palette.white,
       ),
@@ -62,6 +65,9 @@ ThemeData getDarkTheme() {
         color: Palette.white,
       ),
       bodyText2: TextStyle(
+        color: Palette.white,
+      ),
+      subtitle1: TextStyle(
         color: Palette.white,
       ),
       subtitle2: TextStyle(

@@ -6,6 +6,8 @@
     "class": "Class: ",
     "polish": "polish",
     "english": "english",
+
+    "credits": "Application made by: \n\n Dominik Hinc \n\n Adam Tymosz \n\n Special thanks for providing \n us with vocabulary to: \n\n Marcin Hesse",
     
     "number_of_units": "Number of Units",
     "wrong_answer_top": "Wrong answer!",
@@ -18,7 +20,7 @@
     "question_language": "Question language: ",
 
     "book_screen_label": "Books",
-    "auth_screen_label": "Log/Sign in",
+    "auth_screen_label": "Account",
     "achievements_screen_label": "Achievements",
     "settings_screen_label": "Settings",
     "custom_list_screen_label": "Custom List",
@@ -30,14 +32,29 @@
     "dark_theme_name": "Dark",
     "light_theme_name": "Light",
 
+    "save_alert_title": "You have a saved progress!",
+    "save_alert_content": "Do you want to load it?",
+    "save_alert_accept": "Yes",
+    "save_alert_reject": "No",
+
     "save_icon_tooltip": "Save current progress",
+    "progress_saved": "Progress saved",
     "list_finished": "Study finished!\nPress to continue",
 
     "text_input_placeholder": "Answer",
 
     "achievement_unlocked" : "Achievement unlocked!",
 
-    "achievementToComplete": "Complete unit: "
+    "achievementToComplete": "Complete unit: ",
 
+    "login_with": "Sign up with",
+    "logout": "Logout",
+    "save_to_cloud" : "Save progress in cloud",
+    "sync_with_cloud": "Sync with cloud",
+    "save_successful": "Saved successfully",
+    "save_failed": "Save failed",
+    "sync_successful": "Synced successfully",
+    "sync_failed": "Sync failed",
+    "sync_nothing_saved": "No data found"
 
 }

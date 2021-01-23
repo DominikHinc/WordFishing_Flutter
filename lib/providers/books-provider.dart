@@ -30,7 +30,6 @@ class BooksProvider extends ChangeNotifier {
       final isReady = await storage.ready;
       if (!isReady) throw Error();
     } catch (e, s) {
-      // TODO check whether these reports are working
       await FirebaseCrashlytics.instance
           .recordError(e, s, reason: 'LOCAL STORAGE CANNOT BE INITIALIZED');
       return;

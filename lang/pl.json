@@ -6,6 +6,8 @@
     "class": "Klasa: ",
     "polish": "polski",
     "english": "angielski",
+
+    "credits": "Aplikacja stworzona przez: \n\n Dominik Hinc \n\n Adam Tymosz \n\n Specjalne podziękowania za \n udostępnienie słownictwa dla : \n\n Marcin Hesse",
     
     "number_of_units": "Liczba Rozdziałów",
     "wrong_answer_top": "Zła odpowiedź!",
@@ -19,7 +21,7 @@
     "question_language": "Question language: ",
     
     "book_screen_label": "Książki",
-    "auth_screen_label": "Zaloguj/Zajerestruj się",
+    "auth_screen_label": "Konto",
     "achievements_screen_label": "Osiągnięcia",
     "settings_screen_label": "Ustawienia",
     "custom_list_screen_label": "Utwórz własną listę",
@@ -31,7 +33,13 @@
     "dark_theme_name": "Ciemny",
     "light_theme_name": "Jasny",
 
+    "save_alert_title": "Masz zapisane postępy!",
+    "save_alert_content": "Czy chcesz je wczytać?",
+    "save_alert_accept": "Tak",
+    "save_alert_reject": "Nie",
+
     "save_icon_tooltip": "Zapisz obecny postęp",
+    "progress_saved": "Postęp zapisany",
     "list_finished": "Nauka zakończona!\nNaciśnij aby kontynuować",
 
     "text_input_placeholder": "Odpowiedź",
@@ -39,5 +47,15 @@
 
     "achievement_unlocked" : "Osiągnięcie odblokowane!",
 
-    "achievementToComplete": "Ukończ rozdział: "
+    "achievementToComplete": "Ukończ rozdział: ",
+
+    "login_with": "Zaloguj się z",
+    "logout": "Wyloguj się",
+    "save_to_cloud" : "Zapisz postępy w chmurze",
+    "sync_with_cloud": "Synchronizuj z chmurą",
+    "save_successful": "Zapisano pomyślnie",
+    "save_failed": "Wystąpł błąd podczas zapisu",
+    "sync_successful": "Zsynchronizowano pomyślnie",
+    "sync_failed": "Wystąpł błąd podczas synchornizacji",
+    "sync_nothing_saved": "Nie znaleziono danych"
 }

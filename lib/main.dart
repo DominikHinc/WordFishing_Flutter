@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:WordFishing/navigation/routes-config.dart';
+import 'package:WordFishing/providers/achievement-provider.dart';
+import 'package:WordFishing/providers/auth.dart';
 import 'package:WordFishing/providers/books-provider.dart';
 import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/providers/drawer-navigation-provider.dart';
@@ -41,6 +43,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
+          value: AuthProvider(),
+        ),
+        ChangeNotifierProvider.value(
           value: ApplicationThemeProvider(),
         ),
         ChangeNotifierProvider.value(
@@ -55,15 +60,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: SettingsProvider(),
         ),
-<<<<<<< HEAD
-=======
         ChangeNotifierProvider.value(
           value: AchievementProvider(),
         ),
         ChangeNotifierProvider.value(
           value: ProgressProvider(),
         ),
->>>>>>> Add save logic
       ],
       child: Consumer<ApplicationThemeProvider>(
         builder: (_, theme, __) => MaterialApp(

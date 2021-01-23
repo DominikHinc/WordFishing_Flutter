@@ -17,6 +17,63 @@ class UnitsScreen extends StatelessWidget {
   static const routeName = './Units';
   final drawerButtonTranslationKey = "units_screen_label";
 
+  void _showSavedProgressPopup(
+    BuildContext context,
+    String bookId,
+    String unitNumber,
+  ) async {
+    bool shouldLoad = false;
+    try {
+      shouldLoad = await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              translate(context, 'save_alert_title'),
+              style: Theme.of(context).textTheme.headline5.copyWith(
+                    color: Palette.secondary,
+                  ),
+            ),
+            content: Text(
+              translate(context, 'save_alert_content'),
+              style: Theme.of(context).textTheme.bodyText2.copyWith(
+                    color: Palette.secondary,
+                  ),
+            ),
+            actions: [
+              TextButton(
+                child: Text(translate(context, 'save_alert_accept')),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+              TextButton(
+                child: Text(translate(context, 'save_alert_reject')),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              )
+            ],
+          );
+        },
+      );
+    } catch (_) {
+      shouldLoad = false;
+    }
+
+    if (shouldLoad == null) return;
+    Navigator.pushNamed(
+      context,
+      LearningScreen.routeName,
+      arguments: LeariningScreenArguments(
+        bookId,
+        unitNumber,
+        null,
+        shouldLoad,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final booksProvider = Provider.of<BooksProvider>(context);
@@ -60,59 +117,12 @@ class UnitsScreen extends StatelessWidget {
                       completed: isUnitCompleted,
                       saved: isUnitSaved,
                       onPressed: () {
-                        // TODO implrove this code's quality
                         if (isUnitSaved) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text(
-                                  "You have a saved progress!",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5
-                                      .copyWith(
-                                        color: Palette.secondary,
-                                      ),
-                                ),
-                                content: Text(
-                                  "Do you want to load it?",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2
-                                      .copyWith(
-                                        color: Palette.secondary,
-                                      ),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    child: Text("Yes"),
-                                    onPressed: () {
-                                      Navigator.pop(context, true);
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text("No"),
-                                    onPressed: () {
-                                      Navigator.pop(context, false);
-                                    },
-                                  )
-                                ],
-                              );
-                            },
-                          ).then((shouldLoad) {
-                            if (shouldLoad == null) return;
-                            Navigator.pushNamed(
-                              context,
-                              LearningScreen.routeName,
-                              arguments: LeariningScreenArguments(
-                                unitsScreenArguments.bookId,
-                                units.unitNumber,
-                                null,
-                                shouldLoad,
-                              ),
-                            );
-                          });
+                          _showSavedProgressPopup(
+                            context,
+                            unitsScreenArguments.bookId,
+                            units.unitNumber,
+                          );
                         } else {
                           Navigator.pushNamed(
                             context,

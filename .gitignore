@@ -40,6 +40,15 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
+# apk related
+/android/key.properties
+key.jks
 
 # VSCode
 .vscode
+
+# Api
+/web/index.html
+/adnroid/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
+/ios/Runner/Info.plist
