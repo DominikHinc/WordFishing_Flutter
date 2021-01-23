@@ -2,6 +2,7 @@ import 'package:WordFishing/providers/drawer-animation-provider.dart';
 import 'package:WordFishing/utils/breakpoints.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -17,6 +18,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
     final drawerAnimationProvider =
         Provider.of<DrawerAnimationProvider>(context);
     if (getAspectRatioBreakpoint(context) == AspectRatioBreakpoints.VERTICAL) {

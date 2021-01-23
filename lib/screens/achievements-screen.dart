@@ -16,8 +16,7 @@ class AchievementsScreen extends StatelessWidget with DrawerScreenProperties {
   @override
   @override
   Widget build(BuildContext context) {
-    final achievementProvider =
-        Provider(create: null).of<AchievementProvider>(context);
+    final achievementProvider = Provider.of<AchievementProvider>(context);
     final booksProvider = Provider.of<BooksProvider>(context);
     return Scaffold(
       appBar: CustomAppBar(
@@ -40,7 +39,6 @@ class AchievementsScreen extends StatelessWidget with DrawerScreenProperties {
           )
         ]),
       ),
-      body: AchievementScreenTile(),
     );
   }
 }

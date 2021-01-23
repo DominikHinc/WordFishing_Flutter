@@ -49,6 +49,5 @@ key.jks
 
 # Api
 /web/index.html
-/adnroid/app/google-services.json
+/android/app/google-services.json
 /ios/Runner/GoogleService-Info.plist
-/ios/Runner/Info.plist

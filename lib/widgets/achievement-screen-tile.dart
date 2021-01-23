@@ -110,7 +110,6 @@ class _AchievementScreenTileState extends State<AchievementScreenTile> {
                                       ? 200
                                       : 0,
                               width: mediaQuerySize.width / 1.3,
-                              //TODO add a list of achievements to the ListView
                               child: ListView.builder(
                                 itemCount: book.numberOfUnits,
                                 itemBuilder: (context, index) {

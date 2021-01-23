@@ -1,7 +1,6 @@
 import 'package:WordFishing/theme/themes.dart';
 import 'package:WordFishing/utils/translate.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 enum Themes { LIGHT, DARK }
 
@@ -10,7 +9,6 @@ class ApplicationThemeProvider extends ChangeNotifier {
   Themes _currentThemeType;
 
   ApplicationThemeProvider({Themes themeType}) {
-    FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
     switchTheme(themeType);
   }
 
