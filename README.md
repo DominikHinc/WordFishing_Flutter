@@ -4,6 +4,8 @@ Complete recreation of another project under the same name.
 
 Previously written in LibGDX [Link](https://github.com/DominikHinc/WordFishing)
 
+Avaliable on [Google Play Store](https://play.google.com/store/apps/details?id=pl.dominikhinc.wordfishing&hl=en_US&gl=US)
+
 ## Setting up the environment
 
 Simply follow official documentation: https://flutter.dev/docs/get-started/install
